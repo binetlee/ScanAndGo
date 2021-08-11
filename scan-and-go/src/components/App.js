@@ -28,7 +28,6 @@ function App() {
               <Route exact path="/opc"><TestPage1 /></Route> 
               <Route exact path="/wallet"><TestPage2 /></Route> 
           </Switch>
-
     </BrowserRouter>
   );
 }
