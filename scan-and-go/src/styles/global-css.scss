@@ -1,0 +1,104 @@
+////mixins
+@import '~global-css/src/sass/mixins/grid-mixin';
+@import '~global-css/src/sass/mixins/list-mixin';
+@import '~global-css/src/sass/mixins/text-mixin';
+@import '~global-css/src/sass/mixins/button-mixin';
+@import '~global-css/src/sass/mixins/form-state-mixin';
+@import '~global-css/src/sass/mixins/truncation-mixin';
+@import '~global-css/src/sass/mixins/flexbox-mixin';
+////
+////// global variables and placeholders
+@import '~global-css/src/sass/components/variables';
+@import '~global-css/src/sass/components/placeholders';
+//
+
+/* -----------------------------------------------
+  1. Defaults, Resets & Generics
+  2. Layout & Grid
+  3. Typography
+  4. Generics
+  5. Tables
+  6. Buttons & Icons
+  7. Forms
+  8. Alerts
+  9. Components
+  10. Flexbox
+  11. Pre-loaders
+  12. Printing
+------------------------------------------------ */
+
+/* 1. Defaults & Resets
+========================== */
+@import '~global-css/src/sass/components/defaults';
+@import '~global-css/src/sass/components/reset';
+
+/* 2. Layout & Grid
+==========================*/
+@import '~global-css/src/sass/components/grid-responsive';
+
+/* 3. Typography
+==========================*/
+// Typography located on global-utility
+@import '~global-css/src/sass/components/row-headers';
+
+/* 4. Generics
+==========================*/
+@import '~global-css/src/sass/components/global-utility';
+@import '~global-css/src/sass/components/lists';
+@import '~global-css/src/sass/components/breadcrumbs';
+@import '~global-css/src/sass/components/helvetica';
+@import '~global-css/src/sass/components/mw-icons';
+
+/* 5. Tables
+==========================*/
+// @import "components/tables"; - no styles defined yet
+
+/* 6. Buttons & Icons
+==========================*/
+@import '~global-css/src/sass/components/buttons';
+
+/* Custom Button CSS Configuration
+===========================*/
+.bttn--primary.disabled:active, input.bttn--primary.disabled:active {
+  box-shadow: 0 3px 0 #CCC;
+}
+
+/* 7. Forms
+==========================*/
+@import '~global-css/src/sass/components/radio-btn';
+@import '~global-css/src/sass/components/check-box';
+@import '~global-css/src/sass/components/dropdowns';
+@import '~global-css/src/sass/components/form-input';
+@import '~global-css/src/sass/components/input-group';
+
+/* 8. Alerts
+==========================*/
+@import '~global-css/src/sass/components/alerts';
+
+/* 9. Components
+==========================*/
+@import '~global-css/src/sass/components/tabs';
+@import '~global-css/src/sass/components/accordions';
+@import '~global-css/src/sass/components/pagination';
+// @import '~global-css/src/sass/components/price';
+// @import '~global-css/src/sass/components/price-badges';
+@import '~global-css/src/sass/components/review-stars';
+// @import '~global-css/src/sass/components/adaptive-hero';
+
+/* 10. Flexbox
+==========================*/
+@import '~global-css/src/sass/components/flexbox';
+
+/* 11. Pre-loaders
+==========================*/
+@import '~global-css/src/sass/components/pre-loaders';
+
+/* 12. Printing
+==========================*/
+@import '~global-css/src/sass/components/print';
+
+
+
+@import 'scan';
+@import 'checkout';
+@import 'wallet';
