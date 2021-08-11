@@ -11,6 +11,11 @@
 @import '~global-css/src/sass/components/variables';
 @import '~global-css/src/sass/components/placeholders';
 //
+// Project specific path variables
+// $hfappAssetPath: '../images/' !default;
+// $fontPath: '../fonts/'; // This variable can and should change based on the project
+// $globalImgPath: '../images/global/'; // This variable points to global assets
+// $imagePath: $globalImgPath; // this variable should point to your project images
 
 /* -----------------------------------------------
   1. Defaults, Resets & Generics
@@ -97,8 +102,39 @@
 ==========================*/
 @import '~global-css/src/sass/components/print';
 
+/* Header Components */
+// @import '~hfapp/styles/sass/components/header/shared/sharable';
+// @import '~hfapp/styles/sass/components/header/shared/core';
+// @import '~hfapp/styles/sass/components/header/shared/logo';
+// @import '~hfapp/styles/sass/components/header/shared/mask';
+// @import '~hfapp/styles/sass/components/header/shared/mainflyout';
+// @import '~hfapp/styles/sass/components/header/shared/diyflyout';
+// @import '~hfapp/styles/sass/components/header/shared/hsflyout';
+// @import '~hfapp/styles/sass/components/header/shared/simpleflyout';
+// @import '~hfapp/styles/sass/components/header/shared/simplemenu';
+// @import '~hfapp/styles/sass/components/header/shared/myaccount';
+// @import '~hfapp/styles/sass/components/header/shared/search';
+// @import '~hfapp/styles/sass/components/header/shared/mystore';
+// @import '~hfapp/styles/sass/components/header/shared/mycart';
+// @import '~hfapp/styles/sass/components/header/shared/messagebar';
+// @import '~hfapp/styles/sass/components/header/shared/shoppinglinks';
+// @import '~hfapp/styles/sass/components/header/shared/tasklinks';
+// @import '~hfapp/styles/sass/components/header/shared/roomflyout';
 
+/* Footer Components */
+// @import '~hfapp/styles/sass/components/footer/desktop-tablet/core';
+// @import '~hfapp/styles/sass/components/footer/desktop-tablet/email';
+// @import '~hfapp/styles/sass/components/footer/desktop-tablet/credit-offer';
 
+/* Plugins & THD components
+===========================*/
+// @import "~thd-overlay/sass/thd-overlay";
+// @import '~global-tooltip/source/sass/tooltip';
+// @import '~localization/styles/sass/localizationpopup';
+
+/* PROJECT SASS FILES
+==========================*/
 @import 'scan';
 @import 'checkout';
 @import 'wallet';
+@import 'home';
