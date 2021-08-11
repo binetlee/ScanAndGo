@@ -21,8 +21,10 @@ function App() {
   return (
     <BrowserRouter>
         <Switch>
-          <Route exact path="/"><TestPage1 /></Route>
-          <Route exact path="/home"><TestPage2 /></Route>
+          <Route exact path="/"><TestPage1 /></Route> {/* PHP homepage */}
+          <Route exact path="/scanner"><TestPage1 /></Route> {/* scanner */}
+          <Route exact path="/opc"><TestPage1 /></Route> {/* OPC */}
+          <Route exact path="/wallet"><TestPage2 /></Route> {/* mobile wallet */}
       </Switch>
     </BrowserRouter>
   );
