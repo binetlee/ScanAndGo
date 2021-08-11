@@ -57,3 +57,53 @@
     border: 1px solid #CCCCCC;
     margin: 15px 15px 10px 15px;
 }
+
+.forget-something-paragraph {
+    background-color: #F3F4F5;
+    margin-bottom: 25px;
+    padding: 15px 10px 10px 10px;
+
+    .top-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 12px;
+    }
+    .forget-something-text {
+        font-family: Helvetica Neue LT Pro;
+        font-size: 18px;
+        line-height: 21px;
+    }
+    .keep-shopping-button {
+        font-size: 14px;
+        line-height: 21px;
+        color: #3E7697;
+    }
+    .click-here {
+        color: #3E7697;
+        display: inline;
+        font-size: 14px;
+        font-family: Helvetica Neue LT Pro;
+        line-height: 19px;
+    }
+}
+
+.order-conf-info-container {
+    margin-bottom: 40px;
+    .items-info {
+        font-size: 14px;
+        line-height: 19px;
+        margin-bottom: 8px;
+    }
+    .receipt-order-total {
+        font-size: 18px;
+        line-height: 21px;
+        color: 333333;
+        font-family: Helvetica Neue LT Pro;
+        margin-bottom: 5px;
+    }
+    .extra-footer-info {
+        font-size: 14px;
+        line-height: 19px;
+        white-space: pre-line;
+    }
+}
