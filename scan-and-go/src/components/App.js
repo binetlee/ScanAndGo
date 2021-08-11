@@ -3,6 +3,7 @@ import React, { useContext, useEffect } from 'react';
 import { MetadataContext } from '../context';
 import TestPage1 from './TestPage1';
 import TestPage2 from './TestPage2';
+import { OrderConfirmationPage } from './OrderConfirmationPage';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import '../styles/global-css.scss';
 
@@ -30,7 +31,7 @@ function App() {
             <Route exact path="/scanner"><TestPage1 /></Route> {/* scanner */}
             <Route exact path="/opc"><TestPage1 /></Route> {/* OPC */}
             <Route exact path="/wallet"><TestPage2 /></Route> {/* mobile wallet */}
-            <Route exact path="/orderConf"><TestPage2 /></Route> {/* mobile wallet */}
+            <Route exact path="/orderConf"><OrderConfirmationPage /></Route> {/* Order Confirmation Page */}
           </Switch>
         </div>
     </BrowserRouter>
