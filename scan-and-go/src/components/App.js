@@ -25,6 +25,7 @@ function App() {
           <Route exact path="/scanner"><TestPage1 /></Route> {/* scanner */}
           <Route exact path="/opc"><TestPage1 /></Route> {/* OPC */}
           <Route exact path="/wallet"><TestPage2 /></Route> {/* mobile wallet */}
+          <Route exact path="/orderConf"><TestPage2 /></Route> {/* mobile wallet */}
       </Switch>
     </BrowserRouter>
   );
