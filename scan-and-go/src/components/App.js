@@ -25,18 +25,12 @@ function App() {
 
   return (
     <BrowserRouter>
-        <div
-          id="outer"
-          className="col__12-12"
-        >
           <Switch>
-            <Route exact path="/"><TestPage1 /></Route> {/* PHP homepage */}
-            <Route exact path="/scanner"><TestPage1 /></Route> {/* scanner */}
-            <Route exact path="/opc"><TestPage1 /></Route> {/* OPC */}
-            <Route exact path="/wallet"><TestPage2 /></Route> {/* mobile wallet */}
-            <Route exact path="/orderConf"><OrderConfirmationPage /></Route> {/* Order Confirmation Page */}
+          <Route exact path="/"><Home /></Route> 
+          <Route exact path="/scanner"><TestPage1 /></Route> 
+          <Route exact path="/opc"><TestPage1 /></Route> 
+          <Route exact path="/wallet"><TestPage2 /></Route> 
           </Switch>
-        </div>
     </BrowserRouter>
   );
 }
