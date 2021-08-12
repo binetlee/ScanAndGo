@@ -10,19 +10,6 @@ import '../styles/global-css.scss';
 
 function App() {
 
-  const { state: metadataState, dispatch: metadataDispatch } = useContext(MetadataContext);
-
-  useEffect(() => {
-    console.log(`dispatching metadata event from App`);
-    metadataDispatch({
-      type: 'UPDATE_RECEIPT_INFO',
-      receiptInfo : {
-        receiptId: 'dnIM22c'
-      }
-    });
-    console.log(`metadataState: ${metadataState}`);
-  }, []);
-
   return (
     <BrowserRouter>
         <div
@@ -30,7 +17,7 @@ function App() {
           className="col__12-12"
         >
           <Switch>
-            <Route exact path="/"><TestPage1 /></Route> {/* PHP homepage */}
+            <Route exact path="/"><Home /></Route> {/* PHP homepage */}
             <Route exact path="/scanner"><TestPage1 /></Route> {/* scanner */}
             <Route exact path="/opc"><TestPage1 /></Route> {/* OPC */}
             <Route exact path="/wallet"><TestPage2 /></Route> {/* mobile wallet */}

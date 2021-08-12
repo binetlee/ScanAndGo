@@ -4,6 +4,7 @@ import React, {
     useState
 } from 'react';
 import { MetadataContext } from '../../context';
+import HFapp from '../HFapp/HFapp.component';
 import {
     QRComponent
 } from '../QRComponent';
@@ -50,7 +51,8 @@ const OrderConfQRContainer = ({payload}) => (
 );
 // 21x23.5px?
 export function OrderConfirmationPage() {
-    const { state: metadataState } = useContext(MetadataContext);
+    // const { state: metadataState } = useContext(MetadataContext);
+    const mockPayload = 'https://mocki.io/v1/029e8bd3-dce3-4cf4-a355-711783b907ae';//'https://webhook.site/829ea928-29b6-47e0-9dcc-affd0c3120d9';
     
     // useEffect(() => {
     //     console.log(`Metadata has changed to ${metadataState}`);
@@ -58,7 +60,8 @@ export function OrderConfirmationPage() {
 
     return (
         <>
-            <OrderConfQRContainer payload={metadataState.receiptInfo} />
+            <HFapp />
+            <OrderConfQRContainer payload={mockPayload} />
             <Footer />
         </>
     )
