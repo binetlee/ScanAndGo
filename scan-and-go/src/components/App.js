@@ -19,9 +19,9 @@ function App() {
       <GreyOut/>
           <Switch>
           <Route exact path="/"><Home /></Route>
-              <Route exact path="/scanner"><TestPage1 /></Route>
+          <Route exact path="/scanner"><TestPage1 /></Route>
           <Route exact path="/opc"><Opc /></Route>
-              <Route exact path="/security"><Security /></Route>
+          <Route exact path="/security"><Security /></Route>
           <Route exact path="/scanandgo"><ScanCart/></Route>
           <Route exact path="/orderConf"><OrderConfirmationPage /></Route> {/* Order Confirmation Page */}
           </Switch>
