@@ -1,10 +1,24 @@
 import React, {useContext, useEffect} from "react";
 import thd_logo from './img/thd_logo.svg';
 import {MetadataContext} from "../../context";
+import PriceFormatter from "./PriceFormatter";
 
 export function Opc({}) {
 
     const { state: metadataState, dispatch: metadataDispatch } = useContext(MetadataContext);
+
+    function parseDollar (total : Number) {
+        return Math.trunc(total);
+    }
+
+    function parseCents(total) {
+        if (Number.isInteger(total)) {
+            return "00";
+        } else {
+            return (total+"").split(".")[1];
+        }
+    }
+
     useEffect(()=> {
         metadataDispatch({
             type: 'UPDATE_RECEIPT_INFO',
@@ -13,7 +27,7 @@ export function Opc({}) {
                 receiptCreatedDate: "2020-03-21",
                 subTotal: 48.00,
                 salesTax : 3.00,
-                orderTotal : 51.00,
+                orderTotal : 51.01,
                 paymentType: {
                     cardName : "family card",
                     cardType : "PLCC",
@@ -57,9 +71,9 @@ export function Opc({}) {
             }
         });
     }, []);
-    // useEffect(()=> {
-    //     console.log("metadata changed to:", metadataState.receiptDetails);
-    // }, [metadataState]);
+    useEffect(()=> {
+        console.log("metadata changed to:", metadataState.receiptDetails);
+    }, [metadataState]);
     return (
         <>
         <div className="grid isBound">
@@ -67,23 +81,24 @@ export function Opc({}) {
                 <div className="col__12-12 col__12-12--xs col__12-12--sm col__12-12--md col__12-12--lg col__12-12--xl">
                     <span><img src={thd_logo} className="opc-image-align"  alt="THD Logo"/></span>
                     <span className="opc-scan-go-text">Scan & Go Checkout</span>
-                    <span className="opc-edit-cart">Edit Cart (4)</span>
+                    <span className="opc-edit-cart">Edit Cart ({metadataState?.receiptDetails?.lineItems?.length})</span>
                 </div>
             </div>
             <div className="opc-your-order">
                 <div className="col__12-12 col__12-12--xs col__12-12--sm col__12-12--md col__12-12--lg col__12-12--xl opc-border-bottom-grey" >
                     <span className="opc-your-order-text">Your Order</span>
-                    <span className="opc-price-format-wrapper">
-                        <span className="opc-price-format">$</span>
-                        28
-                        <span className="opc-price-format">98</span>
-                    </span>
+                    <PriceFormatter price={metadataState?.receiptDetails?.orderTotal} />
                 </div>
             </div>
             <div className="col__12-12 col__12-12--xs col__12-12--sm col__12-12--md col__12-12--lg col__12-12--xl opc-lineItems">
                 <ul >
-                    {metadataState.receiptDetails.lineItems.map(i => (
-                        <li key={i.lineItemId}>{i.itemCost}</li>
+                    {metadataState?.receiptDetails?.lineItems?.map(i => (
+                        <li key={i.lineItemId} className="opc-lineitem-list">
+                            {i.itemDescription}
+                            {i.upcCode}
+                            {i.quantityOrdered}
+                            {i.itemCost}
+                        </li>
                     ))}
                 </ul>
             </div>
