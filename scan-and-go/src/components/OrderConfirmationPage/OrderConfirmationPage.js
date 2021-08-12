@@ -48,6 +48,7 @@ const OrderConfQRContainer = ({payload}) => (
 // 21x23.5px?
 export function OrderConfirmationPage() {
     const { state: metadataState, dispatch: metadataDispatch } = useContext(MetadataContext);
+    const [ qrPayload, setQrPayload ] = useState();
     const mockPayload = 'https://mocki.io/v1/029e8bd3-dce3-4cf4-a355-711783b907ae';//'https://webhook.site/829ea928-29b6-47e0-9dcc-affd0c3120d9';
     
     useEffect(()=> {
@@ -106,12 +107,18 @@ export function OrderConfirmationPage() {
     }, []);
     useEffect(()=> {
         console.log("metadata changed to:", metadataState.receiptDetails);
+        const qrParsedData = {
+            receiptId: metadataState.receiptDetails?.receiptId,
+            receiptCreatedDate: metadataState.receiptDetails?.receiptCreatedDate,
+            lineItems: metadataState.receiptDetails?.lineItems
+        };
+        setQrPayload(qrParsedData);
     }, [metadataState]);
 
     return (
         <div style={{backgroundColor: '#F5F5F5'}}>
             <HFapp />
-            <OrderConfQRContainer payload={mockPayload} />
+            <OrderConfQRContainer payload={qrPayload} />
             <Footer receiptDetails={metadataState.receiptDetails}/>
         </div>
     )
