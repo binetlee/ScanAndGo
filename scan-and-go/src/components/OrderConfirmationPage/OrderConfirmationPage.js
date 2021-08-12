@@ -14,7 +14,7 @@ import {
 import orderIcon from './orderIcon.png';
 import '../../styles/orderConfirmation.scss';
 
-const OrderConfQRContainer = ({payload}) => (
+const OrderConfQRContainer = ({payload, name}) => (
     <div class='qr-container'>
         <div class='top-qr-container'>
             {/* Image */}
@@ -24,7 +24,7 @@ const OrderConfQRContainer = ({payload}) => (
             
             {/* Thank you message component */}
             <div class='thank-you-message'>
-                {'Thanks for shopping with us, Larry!'}
+                {`Thanks for shopping with us, ${name}!`}
             </div>
         </div>
         {/* Underline */}
@@ -118,7 +118,7 @@ export function OrderConfirmationPage() {
     return (
         <div style={{backgroundColor: '#F5F5F5'}}>
             <HFapp />
-            <OrderConfQRContainer payload={qrPayload} />
+            <OrderConfQRContainer payload={qrPayload} name={metadataState.receiptDetails.billingAddress.firstName} />
             <Footer receiptDetails={metadataState.receiptDetails}/>
         </div>
     )
