@@ -118,7 +118,7 @@ export function OrderConfirmationPage() {
     return (
         <div style={{backgroundColor: '#F5F5F5'}}>
             <HFapp />
-            <OrderConfQRContainer payload={qrPayload} name={metadataState.receiptDetails.billingAddress.firstName} />
+            <OrderConfQRContainer payload={qrPayload} name={metadataState.receiptDetails?.billingAddress?.firstName} />
             <Footer receiptDetails={metadataState.receiptDetails}/>
         </div>
     )
