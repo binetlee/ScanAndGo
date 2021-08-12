@@ -9,6 +9,7 @@
     "global-css": "^16.2.3",
     "hfapp": "^26.1.1",
     "node-sass": "^6.0.1",
+    "qrcode.react": "^1.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-owl-carousel": "^2.3.3",
