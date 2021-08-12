@@ -44,7 +44,7 @@ const OrderConfirmationInfo = ({orderInfo}) => {
                 </div>
             </div>
             {/* Extra Footer Info */}
-            <div clas='extra-footer-info'>
+            <div class='extra-footer-info'>
                 {extraOrderConfText}
             </div>
         </div>
