@@ -1,7 +1,9 @@
 import React, {
+    useContext,
     useEffect,
     useState
 } from 'react';
+import { MetadataContext } from '../../context';
 import {
     QRComponent
 } from '../QRComponent';
@@ -48,16 +50,15 @@ const OrderConfQRContainer = ({payload}) => (
 );
 // 21x23.5px?
 export function OrderConfirmationPage() {
-    // const [testState, setTestState] = useState(false);
-
+    const { state: metadataState } = useContext(MetadataContext);
+    
     // useEffect(() => {
-    //     console.log('setting state to false again after intial render');
-    // }, []);
-    const payload = 'www.google.com';
+    //     console.log(`Metadata has changed to ${metadataState}`);
+    // }, [metadataState]);
 
     return (
         <>
-            <OrderConfQRContainer payload={payload} />
+            <OrderConfQRContainer payload={metadataState.receiptInfo} />
             <Footer />
         </>
     )

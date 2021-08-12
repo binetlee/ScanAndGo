@@ -14,8 +14,10 @@ function App() {
   useEffect(() => {
     console.log(`dispatching metadata event from App`);
     metadataDispatch({
-      type: 'SWITCH_TO_BARCODE',
-      testData: 'testData'
+      type: 'UPDATE_RECEIPT_INFO',
+      receiptInfo : {
+        receiptId: 'dnIM22c'
+      }
     });
     console.log(`metadataState: ${metadataState}`);
   }, []);
