@@ -13,19 +13,6 @@ import ScanCart from "./ScanCart";
 
 function App() {
 
-  const { state: metadataState, dispatch: metadataDispatch } = useContext(MetadataContext);
-
-  useEffect(() => {
-    console.log(`dispatching metadata event from App`);
-    metadataDispatch({
-      type: 'UPDATE_RECEIPT_INFO',
-      receiptInfo : {
-        receiptId: 'dnIM22c'
-      }
-    });
-    console.log(`metadataState: ${metadataState}`);
-  }, []);
-
   return (
     <BrowserRouter>
       <GreyOut/>
