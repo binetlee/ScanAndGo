@@ -1,6 +1,7 @@
 import React, { useCallback, useLayoutEffect } from 'react';
 import PropTypes from 'prop-types';
 import Quagga from '@ericblade/quagga2';
+import {VALID_UPC} from '../../mocks/receiptMock'
 
 function getMedian(arr) {
     arr.sort((a, b) => a - b);
@@ -18,8 +19,8 @@ function getMedianOfCodeErrors(decodedCodes) {
 }
 
 const defaultConstraints = {
-    width: 480,
-    height: 240,
+    width: 355,
+    height: 140,
 };
 
 const defaultLocatorSettings = {
@@ -28,6 +29,7 @@ const defaultLocatorSettings = {
 };
 
 const defaultDecoders = ['upc_reader'];
+
 
 const Scanner = ({
                      onDetected,
@@ -63,18 +65,21 @@ const Scanner = ({
             if (result.boxes) {
                 drawingCtx.clearRect(0, 0, parseInt(drawingCanvas.getAttribute('width')), parseInt(drawingCanvas.getAttribute('height')));
                 result.boxes.filter((box) => box !== result.box).forEach((box) => {
-                    Quagga.ImageDebug.drawPath(box, { x: 0, y: 1 }, drawingCtx, { color: 'purple', lineWidth: 2 });
+                    //Quagga.ImageDebug.drawPath(box, { x: 0, y: 1 }, drawingCtx, { color: 'purple', lineWidth: 2 });
                 });
             }
             if (result.box) {
-                Quagga.ImageDebug.drawPath(result.box, { x: 0, y: 1 }, drawingCtx, { color: 'blue', lineWidth: 2 });
+                //Quagga.ImageDebug.drawPath(result.box, { x: 0, y: 1 }, drawingCtx, { color: 'blue', lineWidth: 2 });
             }
 
             if (result.codeResult && result.codeResult.code) {
-                console.log('hiya');
-                console.log(result.codeResult);
-                console.log(result.codeResult.code);
-                console.log('byea');
+                const potentialCode = result.codeResult.code.toString();
+
+                if(VALID_UPC[potentialCode] != null){
+                    console.log(VALID_UPC[potentialCode]);
+                } else {
+                    console.log('UPC not found');
+                }
                 // const validated = barcodeValidator(result.codeResult.code);
                 // const validated = validateBarcode(result.codeResult.code);
                 // Quagga.ImageDebug.drawPath(result.line, { x: 'x', y: 'y' }, drawingCtx, { color: validated ? 'green' : 'red', lineWidth: 3 });
