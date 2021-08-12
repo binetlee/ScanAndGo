@@ -8,6 +8,7 @@ import { OrderConfirmationPage } from './OrderConfirmationPage';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import '../styles/global-css.scss';
 import Security from "./Security";
+import GreyOut from "./GreyOut";
 import ScanCart from "./ScanCart";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <GreyOut/>
           <Switch>
           <Route exact path="/"><Home /></Route>
           <Route exact path="/scanner"><TestPage1 /></Route>

@@ -14,7 +14,7 @@ export function QRComponent({payload}) {
                 <QRCode 
                     value={payload}
                 /> : 
-                <UnavalidableQRCodeComponent / >
+                <UnavalidableQRCodeComponent />
             }
         </>
     )

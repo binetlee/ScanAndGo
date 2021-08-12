@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom";
 import HFapp from '../HFapp/HFapp.component';
 import OwlCarousel from 'react-owl-carousel';
@@ -8,6 +8,8 @@ import 'owl.carousel/dist/assets/owl.theme.default.css';
 import sbotd from './img/sbotd.png';
 import scan from './img/scan.png';
 import recommendations from './img/recommendations.png';
+import { validateCredential } from "../Security/Security.component";
+import { GreyOutContext } from "../../context";
 
 export function Home({ }) {
   useEffect(() => {
@@ -15,8 +17,11 @@ export function Home({ }) {
   }, []);
   const history = useHistory();
 
+  const { showGreyOut, hideGreyOut } = useContext(GreyOutContext);
+
   const handleClick = () => {
-    history.push("/scanner");
+    showGreyOut();
+    validateCredential(() => {history.push("/scanner"); hideGreyOut();}).catch(() => hideGreyOut());
   }
 
   return (
