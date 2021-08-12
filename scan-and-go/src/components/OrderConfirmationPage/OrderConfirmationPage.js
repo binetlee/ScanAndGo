@@ -42,10 +42,6 @@ const OrderConfQRContainer = ({payload}) => (
             <div class='qr-code'>
                 <QRComponent payload={payload} />
             </div>
-            {/* bottom QR code message */}
-            <div class='bottom-text'>
-                {'This QR code is dynamic and changes every few minutes'}
-            </div>
         </div>
     </div>
 );
@@ -116,7 +112,7 @@ export function OrderConfirmationPage() {
         <>
             <HFapp />
             <OrderConfQRContainer payload={mockPayload} />
-            <Footer />
+            <Footer receiptDetails={metadataState.receiptDetails}/>
         </>
     )
 }
