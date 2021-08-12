@@ -37,7 +37,7 @@ export function HFapp() {
                 </div>
 
                 <div  className="grid grid--center-verticle">
-                    <div  className="Header3__collapser col__5-12 col__4-12--sm col__3-12--md col__3-12--lg">
+                    <div  className="Header3__collapser col__3-12 col__4-12--sm col__3-12--md col__3-12--lg">
                         <div  className="Header3__group" id="deliveryStoreAndZip">
                             <div  className="Header3__groupItem">
 
@@ -77,15 +77,15 @@ export function HFapp() {
                                 </a>          </div>
 
                             <div  className="Header3__groupItem Header3__groupItem--focus">
-                                <div id="myStore"  className="MyStore deliveryZipSeparator MyStore--localized">
+                                {/* <div id="myStore"  className="MyStore deliveryZipSeparator MyStore--localized">
                                     <a href="//www.homedepot.com/l/"  className="MyStore__button" title="Store Finder">
                                         <span  className="MyStore__label"><div>You're shopping</div>
                                         <div  className="MyStoreWrapper"><div  className="MyStore__store">Cedar Park</div><svg width="12px" height="8px" viewBox="0 0 12 8" version="1.1"  className="caret__myStore" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-267.000000, -70.000000)" fill="#F96302"><g transform="translate(10.000000, 67.000000)"><polygon id="deliveryZipDropdown-arrow-shape" points="257 4.47169028 258.39064 3 262.987269 7.67425625 267.644626 3 269 4.47169028 262.987269 10.5"></polygon></g></g></g></svg></div><div  className="MyStore__hours MyStore__hours--open MyStore__hours--responsive"><span  className="MyStore__dot MyStore__dot--open MyStore__dot--responsive"></span><span  className="MyStore__hours--bold">OPEN</span> until 10 pm</div></span>
                                     </a>
-                                </div>
+                                </div> */}
                                 <div id="myStoreDropdown"  className="MyStore__storeInfo u--hide"></div>
                             </div>
-                            <div  className="Header3__groupItem Header3__groupItem--focus">
+                            {/* <div  className="Header3__groupItem Header3__groupItem--focus">
                                 <div id="zipContainer"  className="DeliveryZipInline DeliveryZipInline--shown">
                                     <a href="//www.homedepot.com/l/"  className="DeliveryZipInline__button" title="Delivery zip">
                                         <div  className="DeliveryZipInline__button--block">
@@ -96,7 +96,7 @@ export function HFapp() {
                                         </div>
                                     </a>
                                 </div>
-                                <div id="deliveryZipDropdown"  className="DeliveryZipDropDown__changeZip u--hide"></div>          </div>
+                                <div id="deliveryZipDropdown"  className="DeliveryZipDropDown__changeZip u--hide"></div>          </div> */}
                         </div>
                     </div>
 
@@ -127,7 +127,7 @@ export function HFapp() {
                         </form>      </div>
 
 
-                    <div  className="Header3__collapser col__2-12 col__4-12--sm col__3-12--md col__3-12--lg">
+                    <div  className="Header3__collapser col__4-12 col__4-12--sm col__3-12--md col__3-12--lg">
                         <div  className="Header3__group Customer">
                             <div  className="Header3__groupItem Header3__groupItem--center">
 
