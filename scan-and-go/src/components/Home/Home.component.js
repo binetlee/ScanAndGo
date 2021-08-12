@@ -5,6 +5,7 @@ import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 
+import offer from './img/offer.png';
 import sbotd from './img/sbotd.png';
 import cabinet_mobile from './img/cabinet_mobile.webp';
 import scan from './img/scan.png';
@@ -62,6 +63,8 @@ export function Home({ }) {
 
       {/*Rest of the page*/}
       <div className="col__12-12">
+      <img class="promotionalNav2__card__img" src="https://contentgrid.thdstatic.com/hdus/en_US/DTCCOMNEW/fetch/NexGen/ContentPage/20210812Decor.jpg" alt=" " className="fit-width"/>
+        <img src={offer} className="fit-width"/>
         <img src={recommendations} className="recommendations"/>
       </div>
       
