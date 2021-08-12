@@ -6,7 +6,7 @@ function metadataReducer(state, action){
         case 'UPDATE_RECEIPT_INFO':
             return {
                 ...state,
-                receiptInfo: action.receiptInfo
+                receiptDetails: action.receiptDetails
             }
         default:
             return state;

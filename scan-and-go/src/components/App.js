@@ -8,36 +8,23 @@ import { OrderConfirmationPage } from './OrderConfirmationPage';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import '../styles/global-css.scss';
 import Opc from "./Opc";
+import Security from "./Security";
+import GreyOut from "./GreyOut";
+import ScanCart from "./ScanCart";
 
 function App() {
 
-  const { state: metadataState, dispatch: metadataDispatch } = useContext(MetadataContext);
-
-  useEffect(() => {
-    console.log(`dispatching metadata event from App`);
-    metadataDispatch({
-      type: 'UPDATE_RECEIPT_INFO',
-      receiptInfo : {
-        receiptId: 'dnIM22c'
-      }
-    });
-    console.log(`metadataState: ${metadataState}`);
-  }, []);
-
   return (
     <BrowserRouter>
-        <div
-          id="outer"
-          className="col__12-12"
-        >
+      <GreyOut/>
           <Switch>
-            <Route exact path="/"><TestPage1 /></Route>{/* PHP homepage */}
-              <Route exact path="/scanner"><TestPage1 /></Route>{/* scanner */}
-            <Route exact path="/opc"><Opc /></Route>{/* OPC */}
-              <Route exact path="/wallet"><TestPage2 /></Route>{/* mobile wallet */}
-            <Route exact path="/orderConf"><OrderConfirmationPage /></Route> {/* Order Confirmation Page */}
+          <Route exact path="/"><Home /></Route>
+              <Route exact path="/scanner"><TestPage1 /></Route>
+          <Route exact path="/opc"><Opc /></Route>
+              <Route exact path="/security"><Security /></Route>
+          <Route exact path="/scanandgo"><ScanCart/></Route>
+          <Route exact path="/orderConf"><OrderConfirmationPage /></Route> {/* Order Confirmation Page */}
           </Switch>
-        </div>
     </BrowserRouter>
   );
 }
