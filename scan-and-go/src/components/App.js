@@ -6,6 +6,7 @@ import TestPage1 from './TestPage1';
 import TestPage2 from './TestPage2';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import '../styles/global-css.scss';
+import Opc from "./Opc";
 
 function App() {
 
@@ -23,10 +24,10 @@ function App() {
   return (
     <BrowserRouter>
             <Switch>
-              <Route exact path="/"><Home /></Route> 
-              <Route exact path="/scanner"><TestPage1 /></Route> 
-              <Route exact path="/opc"><TestPage1 /></Route> 
-              <Route exact path="/wallet"><TestPage2 /></Route> 
+              <Route exact path="/"><Home /></Route>
+              <Route exact path="/scanner"><TestPage1 /></Route>
+              <Route exact path="/opc"><Opc /></Route>
+              <Route exact path="/wallet"><TestPage2 /></Route>
           </Switch>
     </BrowserRouter>
   );
