@@ -15,6 +15,7 @@ const formatItems = (lineItems) => {
 
 const OrderConfirmationInfo = ({receiptDetails}) => {
     // Get items to display top expensive item in info
+    console.log(`Receipt Details ${receiptDetails}`);
     const { receiptId, orderTotal, lineItems, billingAddress } = receiptDetails;
     
     const formattedItems = formatItems(lineItems);
@@ -34,7 +35,7 @@ const OrderConfirmationInfo = ({receiptDetails}) => {
                     {`Receipt #${receiptId}`}
                 </div>
                 <div>
-                    {`Order Total: ${orderTotal}`}
+                    {`Order Total: $${orderTotal}`}
                 </div>
             </div>
             {/* Extra Footer Info */}
@@ -48,7 +49,10 @@ const OrderConfirmationInfo = ({receiptDetails}) => {
 export const Footer = ({receiptDetails}) => (
     <>
         {/* <ForgetSomethingParagraph /> */}
-        <OrderConfirmationInfo receiptDetails={receiptDetails} />
+        {receiptDetails ? 
+            <OrderConfirmationInfo receiptDetails={receiptDetails} /> :
+            <> </>
+        }
     </>
 );
 export default Footer;

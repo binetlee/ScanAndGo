@@ -109,11 +109,11 @@ export function OrderConfirmationPage() {
     }, [metadataState]);
 
     return (
-        <>
+        <div style={{backgroundColor: '#F5F5F5'}}>
             <HFapp />
             <OrderConfQRContainer payload={mockPayload} />
             <Footer receiptDetails={metadataState.receiptDetails}/>
-        </>
+        </div>
     )
 }
 
