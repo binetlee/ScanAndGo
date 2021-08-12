@@ -2,14 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
+import './fonts/helvetica/HelveticaNeueLTW01-107XBlkCn.ttf';
 import reportWebVitals from './reportWebVitals';
 import {
-  MetadataProvider
+  MetadataProvider, GreyOutProvider
 } from './context';
 
 ReactDOM.render(
   <MetadataProvider>
-    <App />
+    <GreyOutProvider>
+      <App />
+    </GreyOutProvider>
   </MetadataProvider>,
   document.getElementById('root')
 );

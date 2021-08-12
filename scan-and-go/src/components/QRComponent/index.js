@@ -1,0 +1,4 @@
+export {
+    QRComponent
+}
+from './QRComponent';
