@@ -1,0 +1,35 @@
+.lineItemContainer {
+  img {
+    max-width: 100%;
+    max-height: 125px;
+  }
+
+  .imageContainer {
+    display: flex;
+    justify-content: center;
+  }
+
+  input {
+    border: 1px solid black;
+    font-size: 1.6rem;
+    min-width: 30px;
+    width: 100%;
+    min-height: 30px;
+  }
+
+  .totalCost {
+    font-weight: bold;
+  }
+
+  .itemDescription {
+    font-size: 1.55rem;
+  }
+}
+
+.lineItemLeftSide {
+
+}
+
+.lineItemRightSide {
+
+}
