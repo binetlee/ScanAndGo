@@ -1,0 +1,50 @@
+
+.align-center {
+    text-align: center;
+}
+
+.bold {
+    font-weight: bold;
+}
+.flexbox--center-center {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.recommendations {
+    max-width: 100%;
+}
+
+.scan-btn {
+    text-align: center;
+    margin: 0 auto;
+}
+
+
+@media only screen and (max-width: 479px) {
+    .recommendations {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 480px) {
+    img {
+        &.responsive {
+            width: 100%
+        }
+    }
+}
+
+
+@media only screen and (min-width: 1400px) {
+    img {
+        &.responsive {
+            width: 40%
+        }
+    }
+    .scan-btn {
+        width: 520px;
+    }
+}

@@ -1,6 +1,7 @@
 import './App.css';
 import React, { useContext, useEffect } from 'react';
 import { MetadataContext } from '../context';
+import Home from './Home';
 import TestPage1 from './TestPage1';
 import TestPage2 from './TestPage2';
 import { OrderConfirmationPage } from './OrderConfirmationPage';
