@@ -2,3 +2,42 @@
   font-size: 1.6rem;
   font-weight: bold;
 }
+
+.itemDescription {
+  font-size: 1.55rem;
+}
+
+.impulseBuyHeader {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.impulseBuyContainer {
+  .productImage {
+    max-width: 100%;
+    max-height: 125px;
+  }
+
+  .rating {
+    max-width: 75%;
+    font-size: .9rem;
+  }
+
+  .itemDescription {
+    font-size: 1.5rem;
+    height: 40px;
+  }
+
+  .addToCartButton {
+    max-height: 35px;
+    .addToCart {
+      font-size: 1.5rem;
+      font-weight: bold !important;
+    }
+  }
+}
+
+.impulseBuyPrice {
+  font-size: 2.4rem;
+  font-weight: bold;
+}
