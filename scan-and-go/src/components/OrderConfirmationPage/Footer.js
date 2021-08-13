@@ -20,7 +20,7 @@ const OrderConfirmationInfo = ({receiptDetails}) => {
     
     const formattedItems = formatItems(lineItems);
     const userEmail = billingAddress.emailId;
-    
+    const sanitizedOrderTotal = parseFloat(orderTotal).toFixed(2);
     // Container
     return (
         <div class='order-conf-info-container'>
@@ -35,7 +35,7 @@ const OrderConfirmationInfo = ({receiptDetails}) => {
                     {`Receipt #${receiptId}`}
                 </div>
                 <div>
-                    {`Order Total: $${orderTotal}`}
+                    {`Order Total: $${sanitizedOrderTotal}`}
                 </div>
             </div>
             {/* Extra Footer Info */}
