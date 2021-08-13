@@ -3,7 +3,9 @@ import Scanner from './Scanner';
 import {TEST_RECEIPT} from "../../mocks/receiptBase";
 import {VALID_UPC} from "../../mocks/receiptMock";
 import LineItem from "../LineItem";
+import {TotalPrice} from "../TotalPrice/TotalPrice.component";
 import {MetadataContext} from "../../context";
+import {useHistory} from "react-router-dom";
 
 const ScanWrapper = () => {
     const [scanning, setScanning] = useState(false);
@@ -44,7 +46,6 @@ const ScanWrapper = () => {
         calcTotal();
         setReceipt(receiptBase);
         setTimeout(function(){ setTime(Date.now()); }, 1000);
-        //console.log(receiptBase);
     };
 
     const calcTotal = () => {
@@ -62,15 +63,27 @@ const ScanWrapper = () => {
         receiptBase.receiptDetails.orderTotal = sum + receiptBase.receiptDetails.salesTax;
     };
 
+    const history = useHistory();
+    const { dispatch: metadataDispatch } = useContext(MetadataContext);
+
+    const submit = () => {
+        console.log(receiptBase);
+        metadataDispatch({
+            type: 'UPDATE_RECEIPT_INFO',
+            receiptDetails: receiptBase
+        });
+        history.push("/opc");
+    };
+
     const setQty = (upc,qty) => {
         const curLineItems = receiptBase.receiptDetails.lineItems;
         //exists, modify qty to +1
         let itr = 0;
         curLineItems.forEach((lineItem) => {
-            let { upcCode, quantityOrdered, itemCost} = lineItem;
+            let { upcCode, itemCost} = lineItem;
 
             if (upcCode === upc) {
-                if(qty == 0){
+                if(qty === 0){
                     curLineItems.splice(itr,1);
                 } else {
                     lineItem.quantityOrdered = qty;
@@ -82,13 +95,13 @@ const ScanWrapper = () => {
         calcTotal();
         setReceipt(receiptBase);
         setTimeout(function(){ setTime(Date.now()); }, 1000);
-        //console.log(receiptBase);
     };
 
     const toDbl = (srcVal) => {
         return Number((Math.round(srcVal * 100) / 100).toFixed(2));
     };
 
+    const subTotalString = (receiptBase.receiptDetails.orderTotal < 1) ? ``:`$${receiptBase.receiptDetails.orderTotal}`;
     return (
         <div className="col__12-12 col__6-12--xs col__6-12--sm col__6-12--md col__6-12--lg col__6-12--xl col__6-12--xxl">
             <button
@@ -96,24 +109,22 @@ const ScanWrapper = () => {
                 onClick={() => setScanning(!scanning) }>
                 <span className="bttn__content">{scanning ? 'Stop Scanning' : 'Begin Scanning'}</span>
             </button>
-            {/*<button*/}
-            {/*    className="bttn--primary"*/}
-            {/*    onClick={() => addLineItem('783050455166') }>*/}
-            {/*    <span className="bttn__content">{'Silly'}</span>*/}
-            {/*</button>*/}
-            {/*<button onClick={() => setScanning(!scanning) }>{scanning ? 'Stop Scanning' : 'Begin Scanning'}</button>*/}
-            {/*<div ref={scannerRef} style={{position: 'relative', border: '3px solid red'}}>*/}
             <div ref={scannerRef} style={{position: 'relative'}}>
-                {/* <video style={{ width: window.innerWidth, height: 480, border: '3px solid orange' }}/> */}
                 <canvas className="drawingBuffer" style={{
                     position: 'absolute',
                     top: '0px',
                 }} width="355" height="140" />
                 {scanning ? <Scanner scannerRef={scannerRef} onDetected={(result) => addLineItem(result?.codeResult?.code)} /> : null}
             </div>
+            <div className="col__12-12 col__12-12--xs col__12-12--sm col__12-12--md col__12-12--lg col__12-12--xl">
+                {receiptBase?.receiptDetails?.subTotal > 1 &&
+                    <div className="opc-border-bottom-grey" >
+                        <span className="opc-your-order-text">Scanned Cart</span>
+                    </div>
+                }
+            </div>
             <div className="col__12-12 col__12-12--xs col__12-12--sm col__12-12--md col__12-12--lg col__12-12--xl opc-lineItems">
                 {receiptBase.receiptDetails.lineItems && receiptBase.receiptDetails.lineItems.map((lineItem) => {
-                    // (result.codeResult && <div>{result.codeResult.code}</div> ))
                 return (<LineItem
                     upc={lineItem.upcCode}
                     canEditQuantity={true}
@@ -122,6 +133,19 @@ const ScanWrapper = () => {
 
                 )}
             </div>
+            <div className="col__12-12 col__12-12--xs col__12-12--sm col__12-12--md col__12-12--lg col__12-12--xl">
+                {receiptBase?.receiptDetails?.subTotal > 1 &&
+                    <TotalPrice subtotal={receiptBase?.receiptDetails?.subTotal} cashbackAmount={0.00}/>
+                }
+            </div>
+            <button
+                className="bttn--primary"
+                onClick={() => submit() }
+            >
+
+            <span className="bttn__content">{`Checkout ${subTotalString}`}</span>
+
+            </button>
         </div>
     );
 };

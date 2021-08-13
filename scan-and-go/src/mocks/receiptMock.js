@@ -21,7 +21,7 @@ export const VALID_UPC = {
     'upcCode': '041570143575',
     'imageURL': 'https://images-na.ssl-images-amazon.com/images/I/51LRU7FlDzL._SL150_.jpg',
     'itemDescription': 'Soopat Home Sweet Home Wall Hanging Tapestry',
-    'itemCost': 12.00,
+    'itemCost': 12.99,
   },
   '100008671452': {
     'upcCode': '100008671452',
