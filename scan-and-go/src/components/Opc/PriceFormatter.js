@@ -1,7 +1,7 @@
 
-export function PriceFormatter ({price}) {
+export function PriceFormatter ({price, className="opc-price-format-wrapper"}) {
 
-    function parseDollar (total : Number) {
+    function parseDollar (total) {
         return Math.trunc(total);
     }
 
@@ -15,7 +15,7 @@ export function PriceFormatter ({price}) {
 
     return (
         <>
-            <span className="opc-price-format-wrapper">
+            <span className={className}>
                 <span className="opc-price-format">$</span>
                 {parseDollar(price)}
                 <span className="opc-price-format">{parseCents(price)}</span>

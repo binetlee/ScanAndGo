@@ -29,4 +29,16 @@ export const VALID_UPC = {
     'itemDescription': 'The Home Depot Heavy Duty Brown Paper Lawn and Refuse Bags',
     'itemCost': 6.99,
   },
+  '028400199148': {
+    'upcCode': '028400199148',
+    'imageURL': 'https://m.media-amazon.com/images/I/8141nrQe0aL._SL1500_.jpg',
+    'itemDescription': 'Lay\'s Potato Chips, Classic Flavor, 8oz Bag',
+    'itemCost': 2.99,
+  },
+  '079357382072': {
+    'upcCode': '079357382072',
+    'imageURL': 'https://specsonline.com/wp-content/uploads/2020/10/079357382072.jpg',
+    'itemDescription': 'Music Water 16.9 Fl Oz (Pack of 24)',
+    'itemCost': 4.94,
+  },
 };

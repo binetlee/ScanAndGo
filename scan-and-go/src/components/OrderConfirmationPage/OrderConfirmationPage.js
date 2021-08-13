@@ -14,7 +14,7 @@ import {
 import orderIcon from './orderIcon.png';
 import '../../styles/orderConfirmation.scss';
 
-const OrderConfQRContainer = ({payload}) => (
+const OrderConfQRContainer = ({payload, name}) => (
     <div class='qr-container'>
         <div class='top-qr-container'>
             {/* Image */}
@@ -24,7 +24,7 @@ const OrderConfQRContainer = ({payload}) => (
             
             {/* Thank you message component */}
             <div class='thank-you-message'>
-                {'Thanks for shopping with us, Larry!'}
+                {`Thanks for shopping with us, ${name}!`}
             </div>
         </div>
         {/* Underline */}
@@ -42,23 +42,19 @@ const OrderConfQRContainer = ({payload}) => (
             <div class='qr-code'>
                 <QRComponent payload={payload} />
             </div>
-            {/* bottom QR code message */}
-            <div class='bottom-text'>
-                {'This QR code is dynamic and changes every few minutes'}
-            </div>
         </div>
     </div>
 );
 // 21x23.5px?
 export function OrderConfirmationPage() {
     const { state: metadataState, dispatch: metadataDispatch } = useContext(MetadataContext);
-    const mockPayload = 'https://mocki.io/v1/029e8bd3-dce3-4cf4-a355-711783b907ae';//'https://webhook.site/829ea928-29b6-47e0-9dcc-affd0c3120d9';
+    const [ qrPayload, setQrPayload ] = useState();
     
     useEffect(()=> {
         metadataDispatch({	
             type: 'UPDATE_RECEIPT_INFO',	
             receiptDetails : {	
-                receiptId: 'W123452003',
+                receiptId: 'W123452005',
                 receiptCreatedDate: "2020-03-21",
                 subTotal: 48.00,
                 salesTax : 3.00,
@@ -109,15 +105,33 @@ export function OrderConfirmationPage() {
         });
     }, []);
     useEffect(()=> {
+        // Call backend to register receipt
+        fetch('https://scan-and-go-backend.herokuapp.com/setReceipt', {
+            method: 'POST',
+            mode: 'cors',
+            body: JSON.stringify(metadataState.receiptDetails)
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch((e)=>console.log(e));
         console.log("metadata changed to:", metadataState.receiptDetails);
+        const qrParsedData = `https://scan-and-go-backend.herokuapp.com/getReceipt?receiptId=${metadataState.receiptDetails?.receiptId}`;
+        setQrPayload(qrParsedData);
+        // ping endpoint in case it goes down, use mock endpoint instead
+        const mockPayload = 'https://mocki.io/v1/029e8bd3-dce3-4cf4-a355-711783b907ae';
+        fetch(qrParsedData, {
+            method: 'GET',
+            mode: 'cors',
+        })
+        .catch((e)=> setQrPayload(mockPayload));
     }, [metadataState]);
 
     return (
-        <>
+        <div style={{backgroundColor: '#F5F5F5'}}>
             <HFapp />
-            <OrderConfQRContainer payload={mockPayload} />
-            <Footer />
-        </>
+            <OrderConfQRContainer payload={qrPayload} name={metadataState.receiptDetails?.billingAddress?.firstName} />
+            <Footer receiptDetails={metadataState.receiptDetails}/>
+        </div>
     )
 }
 
