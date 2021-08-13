@@ -10,7 +10,7 @@ export function Opc({}) {
 
     const { state: metadataState, dispatch: metadataDispatch } = useContext(MetadataContext);
 
-    function parseDollar (total : Number) {
+    function parseDollar (total) {
         return Math.trunc(total);
     }
 
