@@ -1,15 +1,21 @@
-import React, { useState, useRef } from 'react';
+import React, {useState, useRef, useEffect, useContext} from 'react';
 import Scanner from './Scanner';
 import {TEST_RECEIPT} from "../../mocks/receiptBase";
 import {VALID_UPC} from "../../mocks/receiptMock";
 import LineItem from "../LineItem";
+import {MetadataContext} from "../../context";
 
 const ScanWrapper = () => {
     const [scanning, setScanning] = useState(false);
+    const [lastModified, setTime] = useState(Date.now());
     const [receiptBase, setReceipt] = useState(TEST_RECEIPT);
     const scannerRef = useRef(null);
 
     const addLineItem = (upc) => {
+        if((Date.now() - lastModified < 2000) || (upc === undefined)){
+            return;
+        }
+        setTime(Date.now());
         const curLineItems = receiptBase.receiptDetails.lineItems;
         let found = false;
         //exists, modify qty to +1
@@ -24,18 +30,21 @@ const ScanWrapper = () => {
         //or if something if not found, create new
         if(!found){
             const upcObj = VALID_UPC[upc];
-            const newItem = {
-                upcCode: upc,
-                quantityOrdered: 1,
-                itemDescription: upcObj.itemDescription,
-                itemCost: upcObj.itemCost,
-                totalCost: upcObj.itemCost
-            };
-            receiptBase.receiptDetails.lineItems.push(newItem);
+            if (upcObj !== undefined){
+                const newItem = {
+                    upcCode: upc,
+                    quantityOrdered: 1,
+                    itemDescription: upcObj.itemDescription,
+                    itemCost: upcObj.itemCost,
+                    totalCost: upcObj.itemCost
+                };
+                receiptBase.receiptDetails.lineItems.push(newItem);
+            }
         }
         calcTotal();
         setReceipt(receiptBase);
-        console.log(receiptBase);
+        setTimeout(function(){ setTime(Date.now()); }, 1000);
+        //console.log(receiptBase);
     };
 
     const calcTotal = () => {
@@ -72,7 +81,8 @@ const ScanWrapper = () => {
         });
         calcTotal();
         setReceipt(receiptBase);
-        console.log(receiptBase);
+        setTimeout(function(){ setTime(Date.now()); }, 1000);
+        //console.log(receiptBase);
     };
 
     const toDbl = (srcVal) => {
@@ -83,29 +93,14 @@ const ScanWrapper = () => {
         <div className="col__12-12 col__6-12--xs col__6-12--sm col__6-12--md col__6-12--lg col__6-12--xl col__6-12--xxl">
             <button
                 className="bttn--primary"
-                onClick={() => addLineItem('899744003749') }>
-                <span className="bttn__content">899744003749</span>
-            </button>
-            <button
-                className="bttn--primary"
-                onClick={() => addLineItem('025315283740') }>
-                <span className="bttn__content">025315283740</span>
-            </button>
-            <button
-                className="bttn--primary"
-                onClick={() => setQty('025315283740',2) }>
-                <span className="bttn__content">025315283740_2</span>
-            </button>
-            <button
-                className="bttn--primary"
-                onClick={() => setQty('025315283740',0) }>
-                <span className="bttn__content">025315283740_0</span>
-            </button>
-            <button
-                className="bttn--primary"
                 onClick={() => setScanning(!scanning) }>
                 <span className="bttn__content">{scanning ? 'Stop Scanning' : 'Begin Scanning'}</span>
             </button>
+            {/*<button*/}
+            {/*    className="bttn--primary"*/}
+            {/*    onClick={() => addLineItem('783050455166') }>*/}
+            {/*    <span className="bttn__content">{'Silly'}</span>*/}
+            {/*</button>*/}
             {/*<button onClick={() => setScanning(!scanning) }>{scanning ? 'Stop Scanning' : 'Begin Scanning'}</button>*/}
             {/*<div ref={scannerRef} style={{position: 'relative', border: '3px solid red'}}>*/}
             <div ref={scannerRef} style={{position: 'relative'}}>
@@ -113,23 +108,20 @@ const ScanWrapper = () => {
                 <canvas className="drawingBuffer" style={{
                     position: 'absolute',
                     top: '0px',
-                    // left: '0px',
-                    // height: '100%',
-                    // width: '100%',
-                    // border: '3px solid green',
                 }} width="355" height="140" />
-                {/*{scanning ? <Scanner scannerRef={scannerRef} onDetected={(result) => setResults([...results, result])} /> : null}*/}
-                {scanning ? <Scanner scannerRef={scannerRef} onDetected={(result) => addLineItem(result)} /> : null}
+                {scanning ? <Scanner scannerRef={scannerRef} onDetected={(result) => addLineItem(result?.codeResult?.code)} /> : null}
             </div>
-            <ul>
-                {/*{results.map((result) =>*/}
-                {/*    (result.codeResult && <div>{result.codeResult.code}</div> ))*/}
-                {/*}*/}
-                {/*<div>*/}
-                {/*    {receiptBase}*/}
-                {/*</div>*/}
-                {/*receiptBase.receiptDetails.lineItems*/}
-            </ul>
+            <div className="col__12-12 col__12-12--xs col__12-12--sm col__12-12--md col__12-12--lg col__12-12--xl opc-lineItems">
+                {receiptBase.receiptDetails.lineItems && receiptBase.receiptDetails.lineItems.map((lineItem) => {
+                    // (result.codeResult && <div>{result.codeResult.code}</div> ))
+                return (<LineItem
+                    upc={lineItem.upcCode}
+                    canEditQuantity={true}
+                    quantity={lineItem.quantityOrdered}
+                    />);}
+
+                )}
+            </div>
         </div>
     );
 };
