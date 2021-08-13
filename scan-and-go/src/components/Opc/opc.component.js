@@ -39,6 +39,15 @@ export function Opc({}) {
     }
 
     const cashbackSelect = () => {
+        //current state has reduction, must add back
+        if(cashback){
+            metadataState.subTotal = metadataState.subTotal - 10.00;
+        } else {
+            metadataState.subTotal = metadataState.subTotal + 10.00;
+        }
+        //else do opposite
+        calcNewTotal(metadataState.receiptDetails);
+        console.log(metadataState.subTotal);
         cashbackChecked(!cashback);
     }
 
