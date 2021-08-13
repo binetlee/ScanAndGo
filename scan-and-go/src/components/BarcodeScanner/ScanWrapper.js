@@ -75,6 +75,20 @@ const ScanWrapper = () => {
         history.push("/opc");
     };
 
+    function formatPrice (price) {
+        let a = Math.trunc(price);
+        let b = "00";
+        if(!Number.isInteger(price)){
+            let second = Number((price + "").split(".")[1]);
+            if(second < 10){
+                b = second + "0";
+            } else {
+                b = second;
+            }
+        }
+        return a + "." + b;
+    }
+
     const setQty = (upc,qty) => {
         const curLineItems = receiptBase.receiptDetails.lineItems;
         //exists, modify qty to +1
@@ -101,7 +115,7 @@ const ScanWrapper = () => {
         return Number((Math.round(srcVal * 100) / 100).toFixed(2));
     };
 
-    const subTotalString = (receiptBase.receiptDetails.orderTotal < 1) ? ``:`$${receiptBase.receiptDetails.orderTotal}`;
+    const subTotalString = (receiptBase.receiptDetails.orderTotal < 1) ? ``:`$${formatPrice(receiptBase.receiptDetails.orderTotal)}`;
     return (
         <div className="col__12-12 col__6-12--xs col__6-12--sm col__6-12--md col__6-12--lg col__6-12--xl col__6-12--xxl">
             <button

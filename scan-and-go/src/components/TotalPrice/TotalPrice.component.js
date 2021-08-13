@@ -5,7 +5,16 @@ export const TotalPrice = ({subtotal, cashback = false, cashbackAmount = 0}) => 
     const taxRate = 0.0625;
 
     function formatPrice (price) {
-        let a = Math.trunc(price), b = Number.isInteger(price) ? "00" : (price + "").split(".")[1];
+        let a = Math.trunc(price);
+        let b = "00";
+        if(!Number.isInteger(price)){
+            let second = Number((price + "").split(".")[1]);
+            if(second < 10){
+                b = second + "0";
+            } else {
+                b = second;
+            }
+        }
         return a + "." + b;
     }
 
