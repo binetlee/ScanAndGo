@@ -13,6 +13,12 @@ export function Opc({}) {
 
     const { state: metadataState, dispatch: metadataDispatch } = useContext(MetadataContext);
     const [cashback, cashbackChecked] = useState(false);
+    const cashBackAmount = 10.00;
+    const taxRate = 0.0625;
+
+    function calcTotal (price) {
+        return ((cashback ? (price - cashBackAmount) : price) * (taxRate + 1)).toFixed(2);
+    }
 
     function parseDollar (total) {
         return Math.trunc(total);
@@ -109,7 +115,7 @@ export function Opc({}) {
             <div className="col__12-12 col__12-12--xs col__12-12--sm col__12-12--md col__12-12--lg col__12-12--xl">
                 <div className="opc-border-bottom-grey" >
                     <span className="opc-your-order-text">Your Order</span>
-                    <PriceFormatter price={metadataState?.receiptDetails?.orderTotal} />
+                    <PriceFormatter price={calcTotal(metadataState?.receiptDetails?.subTotal)} />
                 </div>
             </div>
             <div className="col__12-12 col__12-12--xs col__12-12--sm col__12-12--md col__12-12--lg col__12-12--xl opc-lineItems">
@@ -155,7 +161,7 @@ export function Opc({}) {
                 </div>
             </div>
             <div className="col__12-12 col__12-12--xs col__12-12--sm col__12-12--md col__12-12--lg col__12-12--xl">
-                <TotalPrice subtotal={metadataState?.receiptDetails?.subTotal} cashback={cashback} cashbackAmount={10.00}/>
+                <TotalPrice subtotal={metadataState?.receiptDetails?.subTotal} cashback={cashback} cashbackAmount={cashBackAmount}/>
             </div>
         </div>
         </>
