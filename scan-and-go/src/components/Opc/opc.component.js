@@ -8,6 +8,8 @@ import cashback_icon from "./img/cashback_icon.svg";
 import TotalPrice from "../TotalPrice";
 import CheckoutItemsContainer from "../CheckoutItemsContainer";
 import { VALID_UPC } from '../../mocks/receiptMock';
+import {ImpulseBuy} from "../ImpulseBuy/ImpulseBuy.component";
+import {useHistory} from "react-router-dom";
 
 export function Opc({}) {
 
@@ -40,67 +42,21 @@ export function Opc({}) {
         cashbackChecked(!cashback);
     }
 
-    useEffect(()=> {
-        metadataDispatch({
-            type: 'UPDATE_RECEIPT_INFO',
-            receiptDetails : {
-                receiptId: 'W123452003',
-                receiptCreatedDate: "2020-03-21",
-                subTotal: 48.12,
-                salesTax : 3.00,
-                orderTotal : 51.01,
-                paymentType: {
-                    cardName : "family card",
-                    cardType : "PLCC",
-                    cashbackAmt : "2.56",
-                    lastFour : "4321"
-                },
-                billingAddress: {
-                    addressLine1: "3950 Spring Valley Rd",
-                    addressLine2: "Hackberry Creek",
-                    addressLine3: "",
-                    addressLine4: "",
-                    addressLine5: "",
-                    city: "Farmers Branch",
-                    dayPhone: "214-562-6856",
-                    emailId: "raju_datla@homedepot.com",
-                    firstName: "Raju",
-                    lastName: "Datla",
-                    middleName: "L",
-                    mobilePhone: "214-525-6366",
-                    state: "TX",
-                    zipCode: "75244"
-                },
-                lineItems: [
-                    {
-                        lineItemId: "101",
-                        upcCode: "8049393624",
-                        quantityOrdered: 5,
-                        itemDescription: "Hart 25 oz. Milled Face Hicory Farming Hammer",
-                        itemCost: 4.25,
-                        totalCost: 21.25
-                    },
-                    {
-                        lineItemId: "102",
-                        upcCode: "72440143197",
-                        quantityOrdered: 5,
-                        itemDescription: "Meredith Home and Landscape Series Magazine",
-                        itemCost: 4.25,
-                        totalCost: 26.75
-                    }
-                ]
-            }
-        });
-    }, []);
-    useEffect(()=> {
-        console.log("metadata changed to:", metadataState.receiptDetails);
-    }, [metadataState]);
-
     const [quantity, setQuantity] = useState(1);
 
     const onQuantityChanged = (e) => {
         setQuantity(e.target.value);
     }
+
+    const history = useHistory();
+
+    const submit = () => {
+        metadataDispatch({
+            type: 'UPDATE_RECEIPT_INFO',
+            receiptDetails: metadataState.receiptDetails
+        });
+        history.push("/orderConf");
+    };
 
     return (
         <>
@@ -119,13 +75,23 @@ export function Opc({}) {
                 </div>
             </div>
             <div className="col__12-12 col__12-12--xs col__12-12--sm col__12-12--md col__12-12--lg col__12-12--xl opc-lineItems">
+                {/*<CheckoutItemsContainer children={*/}
+                {/*    [<LineItem upc={"025315283740"} canEditQuantity={false} quantity={9001}/>,*/}
+                {/*    <LineItem upc={"899744003749"} canEditQuantity={false} quantity={9001}/>,*/}
+                {/*    <LineItem upc={"783050455166"} canEditQuantity={false} quantity={9001}/>,*/}
+                {/*    <LineItem upc={"041570143575"} canEditQuantity={false} quantity={9001}/>,*/}
+                {/*    <LineItem upc={"100008671452"} canEditQuantity={false} quantity={9001}/>]}/>*/}
                 <CheckoutItemsContainer children={
-                    [<LineItem upc={"025315283740"} canEditQuantity={false} quantity={9001}/>,
-                    <LineItem upc={"899744003749"} canEditQuantity={false} quantity={9001}/>,
-                    <LineItem upc={"783050455166"} canEditQuantity={false} quantity={9001}/>,
-                    <LineItem upc={"041570143575"} canEditQuantity={false} quantity={9001}/>,
-                    <LineItem upc={"100008671452"} canEditQuantity={false} quantity={9001}/>]}/>
+                    metadataState.receiptDetails?.lineItems?.map((lineItem) => {
+                        return (<LineItem
+                            upc={lineItem.upcCode}
+                            canEditQuantity={false}
+                            quantity={lineItem.quantityOrdered}
+                        />);}
+
+                    )}/>
             </div>
+            <ImpulseBuy/>
             <div className="col__12-12 col__12-12--xs col__12-12--sm col__12-12--md col__12-12--lg col__12-12--xl">
                 <div className="opc-border-bottom-grey">
                     <span className="opc-your-order-text">Payment</span>
@@ -163,6 +129,14 @@ export function Opc({}) {
             <div className="col__12-12 col__12-12--xs col__12-12--sm col__12-12--md col__12-12--lg col__12-12--xl">
                 <TotalPrice subtotal={metadataState?.receiptDetails?.subTotal} cashback={cashback} cashbackAmount={cashBackAmount}/>
             </div>
+            <button
+                className="bttn--primary"
+                onClick={() => submit() }
+            >
+
+                <span className="bttn__content">Place Order</span>
+
+            </button>
         </div>
         </>
     )
