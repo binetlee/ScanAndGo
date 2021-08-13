@@ -115,7 +115,7 @@ export function OrderConfirmationPage() {
         .then(data => console.log(data))
         .catch((e)=>console.log(e));
         console.log("metadata changed to:", metadataState.receiptDetails);
-        const qrParsedData = `https://scan-and-go-backend.herokuapp.com/getReceipt?receiptId=${metadataState.receiptDetails.receiptId}`;
+        const qrParsedData = `https://scan-and-go-backend.herokuapp.com/getReceipt?receiptId=${metadataState.receiptDetails?.receiptId}`;
         setQrPayload(qrParsedData);
         // ping endpoint in case it goes down, use mock endpoint instead
         const mockPayload = 'https://mocki.io/v1/029e8bd3-dce3-4cf4-a355-711783b907ae';
@@ -123,8 +123,6 @@ export function OrderConfirmationPage() {
             method: 'GET',
             mode: 'cors',
         })
-        .then(response => response.json())
-        .then(data => console.log(data))
         .catch((e)=> setQrPayload(mockPayload));
     }, [metadataState]);
 
