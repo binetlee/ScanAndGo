@@ -67,10 +67,9 @@ const ScanWrapper = () => {
     const { dispatch: metadataDispatch } = useContext(MetadataContext);
 
     const submit = () => {
-        console.log(receiptBase);
         metadataDispatch({
             type: 'UPDATE_RECEIPT_INFO',
-            receiptDetails: receiptBase
+            receiptDetails: receiptBase.receiptDetails
         });
         history.push("/opc");
     };
