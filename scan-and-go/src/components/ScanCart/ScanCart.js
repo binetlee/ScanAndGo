@@ -11,12 +11,6 @@ export function ScanCart({}) {
     return (
         <div className="grid isBound">
             <ScanWrapper/>
-            <button
-                className="bttn--primary"
-                // onClick={() => setScanning(!scanning) }
-                >
-                <span className="bttn__content">Checkout</span>
-            </button>
         </div>
     )
 }
