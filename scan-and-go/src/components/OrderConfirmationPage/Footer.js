@@ -17,6 +17,22 @@ const OrderConfirmationInfo = ({receiptDetails}) => {
     // Get items to display top expensive item in info
     console.log(`Receipt Details ${receiptDetails}`);
     const { receiptId, orderTotal, lineItems, billingAddress } = receiptDetails;
+
+    function formatPrice (price) {
+        let a = Math.trunc(price);
+        let b = "00";
+        if(!Number.isInteger(price)){
+            let second = Number((price + "").split(".")[1]);
+            if(second < 10){
+                b = second + "0";
+            } else {
+                b = second;
+            }
+        }
+        return a + "." + b;
+    }
+
+    const formattedTotal = formatPrice(orderTotal);
     
     const formattedItems = formatItems(lineItems);
     const userEmail = billingAddress.emailId;
@@ -35,7 +51,7 @@ const OrderConfirmationInfo = ({receiptDetails}) => {
                     {`Receipt #${receiptId}`}
                 </div>
                 <div>
-                    {`Order Total: $${orderTotal}`}
+                    {`Order Total: $${formattedTotal}`}
                 </div>
             </div>
             {/* Extra Footer Info */}
