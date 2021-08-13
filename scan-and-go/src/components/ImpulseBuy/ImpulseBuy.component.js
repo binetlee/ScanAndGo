@@ -20,7 +20,7 @@ const ImpulseBuyItem = ({ upc, addToCart }) => {
         <PriceFormatter price={itemCost} className="impulseBuyPrice"/>
       </div>
       <button
-        className="bttn-outline--primary addToCartButton"
+        className="bttn-outline bttn-outline--primary addToCartButton"
         onClick={() => addToCart(upc)}>
         <span className="bttn__content addToCart">Add to Cart</span>
       </button>

@@ -58,6 +58,50 @@ export function Opc({}) {
         history.push("/orderConf");
     };
 
+    const toDbl = (srcVal) => {
+        return Number((Math.round(srcVal * 100) / 100).toFixed(2));
+    };
+
+    const calcNewTotal = (newReceiptDetails) => {
+        const curLineItems = newReceiptDetails.lineItems;
+        let sum = 0;
+        //exists, modify qty
+        curLineItems.forEach((lineItem) => {
+            let { totalCost } = lineItem;
+            sum += totalCost;
+        });
+
+        newReceiptDetails.subTotal = sum;
+        newReceiptDetails.salesTax = toDbl(sum*.0625);
+        newReceiptDetails.orderTotal = sum + newReceiptDetails.salesTax;
+    };
+
+    const addToCart = (upc) => {
+        const { itemDescription, itemCost } = VALID_UPC[upc];
+        const lineItems = metadataState.receiptDetails.lineItems;
+        let found = false;
+        //exists, modify qty to +1
+        lineItems.forEach((lineItem) => {
+            let { upcCode, quantityOrdered, itemCost} = lineItem;
+            if (upcCode === upc) {
+                found = true;
+                lineItem.quantityOrdered = quantityOrdered + 1;
+                lineItem.totalCost = toDbl(itemCost * lineItem.quantityOrdered);
+            }
+        });
+        if (!found) {
+            lineItems.push({
+                itemCost, itemDescription, quantityOrdered: 1, totalCost: itemCost, upcCode: upc
+            });
+        }
+        const newReceiptDetails = { ...metadataState.receiptDetails, lineItems };
+        calcNewTotal(newReceiptDetails);
+        metadataDispatch({
+            type: 'UPDATE_RECEIPT_INFO',
+            receiptDetails: newReceiptDetails
+        });
+    }
+
     return (
         <>
         <div className="grid isBound">
@@ -91,7 +135,7 @@ export function Opc({}) {
 
                     )}/>
             </div>
-            <ImpulseBuy/>
+            <ImpulseBuy addToCart={addToCart}/>
             <div className="col__12-12 col__12-12--xs col__12-12--sm col__12-12--md col__12-12--lg col__12-12--xl">
                 <div className="opc-border-bottom-grey">
                     <span className="opc-your-order-text">Payment</span>
