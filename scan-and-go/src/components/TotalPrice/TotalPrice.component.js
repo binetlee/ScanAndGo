@@ -8,11 +8,11 @@ export const TotalPrice = ({subtotal, cashback = false, cashbackAmount = 0, tax,
         let a = Math.trunc(price);
         let b = "00";
         if(!Number.isInteger(price)){
-            let second = Number((price + "").split(".")[1]);
-            if(second < 10){
+            let second = (price + "").split(".")[1];
+            if(second.length < 2){
                 b = second + "0";
             } else {
-                b = second;
+                b = second.substring(0,2);
             }
         }
         return a + "." + b;
