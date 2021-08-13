@@ -27,7 +27,7 @@ $space-awkward: 7px;
     // AWKWARD - 7px
     &Awkward-vertical {
       margin-top: $space-awkward;
-      margin-bottom: 7px;
+      margin-bottom: $space-awkward;
     }
     &Awkward-horizontal {
       margin-left: $space-awkward;
