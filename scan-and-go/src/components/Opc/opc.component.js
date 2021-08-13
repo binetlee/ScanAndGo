@@ -115,15 +115,17 @@ export function Opc({}) {
                     <div className="col__12-12 radio-btn">
                         <input className="radio-btn__input" type="radio" name="payPal" readOnly value="payPal" />
                         <label className="radio-btn__label" htmlFor="payPal">
-                            <span className="radio-btn"></span>
-                                <div className="opc-paypal-logo"></div>
+                            <span className="radio-btn"/>
+                            <div className="">
+                               <img src="https://www.homedepot.com/mycheckout/assets/react/images/layout/paypal-logo.png" className="opc-paypal-logo"/>
+                            </div>
                         </label>
                     </div>
                     <div className="col__12-12 radio-btn">
                         <input className="radio-btn__input" type="radio" name="creditCard" readOnly value="creditCard" />
                         <label className="radio-btn__label" htmlFor="creditCard">
-                            <span className="radio-btn"></span>
-                                <div> <img src={hd_credit_card} className="opc-credit-image" />****5555 05/25</div>
+                            <span className="radio-btn"/>
+                                <div> <img src={hd_credit_card} className="opc-credit-image"  alt="Credit Card Logo"/>****5555 05/25</div>
                         </label>
                     </div>
             </div>
