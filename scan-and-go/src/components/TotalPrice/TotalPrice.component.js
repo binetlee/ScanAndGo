@@ -1,6 +1,6 @@
 import PriceFormatter from "../Opc/PriceFormatter";
 
-export const TotalPrice = ({subtotal, cashbackAmount = 0}) => {
+export const TotalPrice = ({subtotal, cashback = false, cashbackAmount = 0}) => {
 
     const taxRate = 0.0625;
 
@@ -10,11 +10,11 @@ export const TotalPrice = ({subtotal, cashbackAmount = 0}) => {
     }
 
     function calculateTax (price) {
-        return ((price - cashbackAmount) * taxRate).toFixed(2);
+        return ((cashback ? (price - cashbackAmount) : price) * taxRate).toFixed(2);
     }
 
     function calcTotal (price) {
-        return ((price - cashbackAmount) * (taxRate + 1)).toFixed(2);
+        return ((cashback ? (price - cashbackAmount) : price) * (taxRate + 1)).toFixed(2);
     }
 
     return (
@@ -23,7 +23,7 @@ export const TotalPrice = ({subtotal, cashbackAmount = 0}) => {
                 <span className="title">Subtotal</span>
                 <span className="text">${formatPrice(subtotal)}</span>
             </div>
-            {cashbackAmount > 0 &&
+            {cashback > 0 &&
                 <div className="totalPriceContainer">
                     <span className="cashback-text">Cash Back Savings</span>
                     <span className='cashback-amount'>-${formatPrice(cashbackAmount)}</span>

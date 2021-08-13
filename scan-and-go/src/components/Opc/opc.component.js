@@ -6,10 +6,13 @@ import LineItem from "../LineItem";
 import hd_credit_card from "./img/HD_Credit_Card.png";
 import cashback_icon from "./img/cashback_icon.svg";
 import TotalPrice from "../TotalPrice";
+import CheckoutItemsContainer from "../CheckoutItemsContainer";
+import { VALID_UPC } from '../../mocks/receiptMock';
 
 export function Opc({}) {
 
     const { state: metadataState, dispatch: metadataDispatch } = useContext(MetadataContext);
+    const [cashback, cashbackChecked] = useState(false);
 
     function parseDollar (total) {
         return Math.trunc(total);
@@ -27,8 +30,8 @@ export function Opc({}) {
         console.log(e.target.value);
     }
 
-    function cashbackSelect(e) {
-        console.log(e.target.value);
+    const cashbackSelect = () => {
+        cashbackChecked(!cashback);
     }
 
     useEffect(()=> {
@@ -110,11 +113,12 @@ export function Opc({}) {
                 </div>
             </div>
             <div className="col__12-12 col__12-12--xs col__12-12--sm col__12-12--md col__12-12--lg col__12-12--xl opc-lineItems">
-                <LineItem upc={"025315283740"} canEditQuantity={false} quantity={9001}/>
-                {/*<LineItem upc={"899744003749"} canEditQuantity={false} quantity={9001}/>*/}
-                {/*<LineItem upc={"783050455166"} canEditQuantity={false} quantity={9001}/>*/}
-                {/*<LineItem upc={"041570143575"} canEditQuantity={false} quantity={9001}/>*/}
-                {/*<LineItem upc={"100008671452"} canEditQuantity={false} quantity={9001}/>*/}
+                <CheckoutItemsContainer children={
+                    [<LineItem upc={"025315283740"} canEditQuantity={false} quantity={9001}/>,
+                    <LineItem upc={"899744003749"} canEditQuantity={false} quantity={9001}/>,
+                    <LineItem upc={"783050455166"} canEditQuantity={false} quantity={9001}/>,
+                    <LineItem upc={"041570143575"} canEditQuantity={false} quantity={9001}/>,
+                    <LineItem upc={"100008671452"} canEditQuantity={false} quantity={9001}/>]}/>
             </div>
             <div className="col__12-12 col__12-12--xs col__12-12--sm col__12-12--md col__12-12--lg col__12-12--xl">
                 <div className="opc-border-bottom-grey">
@@ -143,7 +147,7 @@ export function Opc({}) {
                     <label className="checkbox-btn__label" htmlFor="cashback">
                         <div>
                             <img src={cashback_icon} className="opc-cashback-icon"/>
-                            <span className="bold">Apply $20.00 cash back </span>
+                            <span className="bold">Apply $10.00 cash back </span>
                             <div>Thanks for paying with your Home Depot credit card</div>
                         </div>
 
@@ -151,7 +155,7 @@ export function Opc({}) {
                 </div>
             </div>
             <div className="col__12-12 col__12-12--xs col__12-12--sm col__12-12--md col__12-12--lg col__12-12--xl">
-                <TotalPrice subtotal={metadataState?.receiptDetails?.subTotal} cashbackAmount={10.00}/>
+                <TotalPrice subtotal={metadataState?.receiptDetails?.subTotal} cashback={cashback} cashbackAmount={10.00}/>
             </div>
         </div>
         </>
