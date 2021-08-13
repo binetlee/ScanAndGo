@@ -74,11 +74,11 @@ const Scanner = ({
 
             if (result.codeResult && result.codeResult.code) {
                 const potentialCode = result.codeResult.code.toString();
-
-                if(VALID_UPC[potentialCode] != null){
+                if(VALID_UPC[potentialCode] !== undefined){
                     console.log(VALID_UPC[potentialCode]);
+                    onDetected(result);
                 } else {
-                    console.log('UPC not found');
+                    console.log('UPC not found: ' + potentialCode);
                 }
                 // const validated = barcodeValidator(result.codeResult.code);
                 // const validated = validateBarcode(result.codeResult.code);

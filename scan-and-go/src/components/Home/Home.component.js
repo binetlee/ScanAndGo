@@ -23,7 +23,7 @@ export function Home({ }) {
 
   const handleClick = () => {
     showGreyOut();
-    validateCredential(() => {history.push("/scanner"); hideGreyOut();}).catch(() => hideGreyOut());
+    validateCredential(() => {history.push("/scanandgo"); hideGreyOut();}).catch(() => hideGreyOut());
   }
 
   return (
