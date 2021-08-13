@@ -152,7 +152,7 @@ const ScanWrapper = () => {
             </div>
             <div className="col__12-12 col__12-12--xs col__12-12--sm col__12-12--md col__12-12--lg col__12-12--xl">
                 {receiptBase?.receiptDetails?.subTotal > 1 &&
-                    <TotalPrice subtotal={receiptBase?.receiptDetails?.subTotal} cashbackAmount={0.00}/>
+                    <TotalPrice subtotal={receiptBase?.receiptDetails?.subTotal} tax={receiptBase?.receiptDetails?.salesTax} orderTotal={receiptBase?.receiptDetails?.orderTotal} cashbackAmount={0.00}/>
                 }
             </div>
             <button

@@ -39,6 +39,11 @@ export function Opc({}) {
     }
 
     const cashbackSelect = () => {
+        const amountToAdd = cashback ? -cashBackAmount : cashBackAmount;
+        metadataDispatch({
+            type: 'UPDATE_RECEIPT_INFO',
+            receiptDetails: {...metadataState.receiptDetails, orderTotal: toDbl(metadataState.receiptDetails.orderTotal - amountToAdd)}
+        });
         cashbackChecked(!cashback);
     }
 
@@ -115,7 +120,7 @@ export function Opc({}) {
             <div className="col__12-12 col__12-12--xs col__12-12--sm col__12-12--md col__12-12--lg col__12-12--xl">
                 <div className="opc-border-bottom-grey" >
                     <span className="opc-your-order-text">Your Order</span>
-                    <PriceFormatter price={calcTotal(metadataState?.receiptDetails?.subTotal)} />
+                    <PriceFormatter price={metadataState?.receiptDetails?.orderTotal} />
                 </div>
             </div>
             <div className="col__12-12 col__12-12--xs col__12-12--sm col__12-12--md col__12-12--lg col__12-12--xl opc-lineItems">
@@ -171,7 +176,7 @@ export function Opc({}) {
                 </div>
             </div>
             <div className="col__12-12 col__12-12--xs col__12-12--sm col__12-12--md col__12-12--lg col__12-12--xl">
-                <TotalPrice subtotal={metadataState?.receiptDetails?.subTotal} cashback={cashback} cashbackAmount={cashBackAmount}/>
+                <TotalPrice subtotal={metadataState?.receiptDetails?.subTotal} tax={metadataState?.receiptDetails?.salesTax} orderTotal={metadataState?.receiptDetails?.orderTotal} cashback={cashback} cashbackAmount={cashBackAmount}/>
             </div>
             <button
                 className="bttn--primary"

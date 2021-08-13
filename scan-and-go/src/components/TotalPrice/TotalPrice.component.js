@@ -1,6 +1,6 @@
 import PriceFormatter from "../Opc/PriceFormatter";
 
-export const TotalPrice = ({subtotal, cashback = false, cashbackAmount = 0}) => {
+export const TotalPrice = ({subtotal, cashback = false, cashbackAmount = 0, tax, orderTotal}) => {
 
     const taxRate = 0.0625;
 
@@ -44,12 +44,12 @@ export const TotalPrice = ({subtotal, cashback = false, cashbackAmount = 0}) => 
             </div>
             <div className="totalPriceContainer grey-border">
                 <span className="float-left">Estimated Sales Tax*</span>
-                <span className="float-right">${calculateTax(subtotal)}</span>
+                <span className="float-right">{tax}</span>
             </div>
             <div className="totalPriceContainer" ><div className="grey-border"/> </div>
             <div className="totalPriceContainer total-shift">
                 <span className="total-text float-left">Total</span>
-                <span className="float-left total-text"><PriceFormatter price={calcTotal(subtotal)}/> </span>
+                <span className="float-left total-text"><PriceFormatter price={orderTotal}/> </span>
             </div>
         </div>
     )
