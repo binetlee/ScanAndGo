@@ -1,0 +1,63 @@
+.totalPriceContainer{
+
+  overflow: auto;
+  font-size: 14px;
+  line-height: 16px;
+  padding: 6px;
+
+  .title{
+    float: left;
+    font-size: 14px;
+    line-height: 16px;
+    color: #333333;
+  }
+
+  .text {
+    float: right;
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  .cashback-text {
+    float: left;
+    font-size: 14px;
+    line-height: 16px;
+    /* identical to box height */
+
+    color: #00873C;
+  }
+
+  .cashback-amount {
+    float: right;
+    font-size: 14px;
+    line-height: 16px;
+    /* identical to box height */
+
+    color: #00873C;
+  }
+
+  .green{
+    color: #00873C;
+  }
+
+  .float-left{
+    float:left;
+  }
+
+  .float-right{
+    float:right;
+  }
+
+  .grey-border {
+    border-bottom: 1px solid #999;
+  }
+
+  .total-shift{
+    padding-top: 30px;
+  }
+
+  .total-text {
+    font-size: 24px;
+    line-height: 28px;
+  }
+}
