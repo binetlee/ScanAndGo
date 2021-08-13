@@ -3,7 +3,7 @@ export const VALID_UPC = {
     'upcCode': '025315283740',
     'imageURL': 'https://images-na.ssl-images-amazon.com/images/I/41SftOttU4L._SL150_.jpg',
     'itemDescription': 'Marie Sharps Belizean Heat, 5oz - Pack of 3',
-    'itemCost': 4.20,
+    'itemCost': 4.21,
     'riskCategory' : 'Low-Risk',
   },
   '899744003749': {
