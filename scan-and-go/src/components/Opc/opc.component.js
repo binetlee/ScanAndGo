@@ -1,7 +1,9 @@
-import React, {useContext, useEffect} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import thd_logo from './img/thd_logo.svg';
 import {MetadataContext} from "../../context";
 import PriceFormatter from "./PriceFormatter";
+import LineItem from "../LineItem";
+import hd_credit_card from "./img/HD_Credit_Card.png";
 
 export function Opc({}) {
 
@@ -74,33 +76,56 @@ export function Opc({}) {
     useEffect(()=> {
         console.log("metadata changed to:", metadataState.receiptDetails);
     }, [metadataState]);
+
+    const [quantity, setQuantity] = useState(1);
+
+    const onQuantityChanged = (e) => {
+        setQuantity(e.target.value);
+    }
+
     return (
         <>
         <div className="grid isBound">
-            <div className="opc-header">
-                <div className="col__12-12 col__12-12--xs col__12-12--sm col__12-12--md col__12-12--lg col__12-12--xl">
+            <div className="col__12-12 col__12-12--xs col__12-12--sm col__12-12--md col__12-12--lg col__12-12--xl">
+                <div className="">
                     <span><img src={thd_logo} className="opc-image-align"  alt="THD Logo"/></span>
                     <span className="opc-scan-go-text">Scan & Go Checkout</span>
                     <span className="opc-edit-cart">Edit Cart ({metadataState?.receiptDetails?.lineItems?.length})</span>
                 </div>
             </div>
-            <div className="opc-your-order">
-                <div className="col__12-12 col__12-12--xs col__12-12--sm col__12-12--md col__12-12--lg col__12-12--xl opc-border-bottom-grey" >
+            <div className="col__12-12 col__12-12--xs col__12-12--sm col__12-12--md col__12-12--lg col__12-12--xl">
+                <div className="opc-border-bottom-grey" >
                     <span className="opc-your-order-text">Your Order</span>
                     <PriceFormatter price={metadataState?.receiptDetails?.orderTotal} />
                 </div>
             </div>
             <div className="col__12-12 col__12-12--xs col__12-12--sm col__12-12--md col__12-12--lg col__12-12--xl opc-lineItems">
-                <ul >
-                    {metadataState?.receiptDetails?.lineItems?.map(i => (
-                        <li key={i.lineItemId} className="opc-lineitem-list">
-                            {i.itemDescription}
-                            {i.upcCode}
-                            {i.quantityOrdered}
-                            {i.itemCost}
-                        </li>
-                    ))}
-                </ul>
+                <LineItem upc={"025315283740"} canEditQuantity={false} quantity={9001}/>
+                {/*<LineItem upc={"899744003749"} canEditQuantity={false} quantity={9001}/>*/}
+                {/*<LineItem upc={"783050455166"} canEditQuantity={false} quantity={9001}/>*/}
+                {/*<LineItem upc={"041570143575"} canEditQuantity={false} quantity={9001}/>*/}
+                {/*<LineItem upc={"100008671452"} canEditQuantity={false} quantity={9001}/>*/}
+            </div>
+            <div className="col__12-12 col__12-12--xs col__12-12--sm col__12-12--md col__12-12--lg col__12-12--xl">
+                <div className="opc-border-bottom-grey">
+                    <span className="opc-your-order-text">Payment</span>
+                </div>
+            </div>
+            <div className="col__12-12 col__12-12--xs col__12-12--sm col__12-12--md col__12-12--lg col__12-12--xl">
+                    <div className="col__12-12 radio-btn">
+                        <input className="radio-btn__input" type="radio" name="payPal" readOnly value="payPal" />
+                        <label className="radio-btn__label" htmlFor="payPal">
+                            <span className="radio-btn"></span>
+                                <div className="opc-paypal-logo"></div>
+                        </label>
+                    </div>
+                    <div className="col__12-12 radio-btn">
+                        <input className="radio-btn__input" type="radio" name="creditCard" readOnly value="creditCard" />
+                        <label className="radio-btn__label" htmlFor="creditCard">
+                            <span className="radio-btn"></span>
+                                <div> <img src={hd_credit_card} className="opc-credit-image" />****5555 05/25</div>
+                        </label>
+                    </div>
             </div>
         </div>
         </>

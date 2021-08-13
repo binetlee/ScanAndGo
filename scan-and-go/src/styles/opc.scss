@@ -11,8 +11,9 @@
   height: 31px;
   left: 14.93%;
   right: 39.73%;
+  width: 60%;
 
-  font-family: Helvetica Neue LT Pro, serif;
+  //font-family: Helvetica Neue LT Pro, serif;
   font-size: 18px;
   line-height: 31px;
   /* identical to box height, or 172% */
@@ -34,7 +35,7 @@
   right: 2.67%;
   top: calc(50% - 21px/2 - 7px);
 
-  font-family: Helvetica Neue LT Pro, serif;
+  //font-family: Helvetica Neue LT Pro, serif;
   font-size: 14px;
   line-height: 31px;
   /* identical to box height, or 150% */
@@ -50,7 +51,6 @@
 }
 
 .opc-your-order {
-  position: absolute;
   width: 354px;
   height: 36px;
   left: 10px;
@@ -63,7 +63,7 @@
   left: 10px;
   top: 95px;
 
-  font-family: Helvetica Neue LT Pro;
+  //font-family: Helvetica Neue LT Pro;
   font-size: 30px;
   line-height: 35px;
   /* identical to box height */
@@ -85,7 +85,7 @@
     font-size: 1.2rem;
     vertical-align: 1.2ex;
     line-height: 1rem;
-    font-family: Helvetica Neue LT Pro;
+    //font-family: Helvetica Neue LT Pro;
     color: #333333;
   left: 83%;
 }
@@ -102,7 +102,7 @@
   right: 15.47%;
   top: calc(50% - 14px/2 - 671px);
 
-  font-family: Helvetica Neue LT Pro;
+  //font-family: Helvetica Neue LT Pro;
   font-size: 12px;
   line-height: 14px;
   /* identical to box height */
@@ -122,9 +122,24 @@
 }
 
 .opc-lineItems {
-  top: 60px;
+  //top: 60px;
 }
 
 .opc-lineitem-list{
   padding: 3px;
+}
+
+.opc-paypal-logo {
+  height: 34px;
+  min-width: 74px;
+  margin: -4px 0 0 -5px;
+  background-size: contain;
+  background: url(https://www.homedepot.com/mycheckout/assets/react/images/layout/paypal-logo.png) no-repeat left top;
+}
+
+.opc-credit-image{
+  width: 34px;
+  height: 23.8px;
+  left: 41px;
+  top: 359px;
 }
