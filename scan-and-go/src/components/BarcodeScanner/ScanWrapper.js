@@ -38,7 +38,8 @@ const ScanWrapper = () => {
                     quantityOrdered: 1,
                     itemDescription: upcObj.itemDescription,
                     itemCost: upcObj.itemCost,
-                    totalCost: upcObj.itemCost
+                    totalCost: upcObj.itemCost,
+                    riskCategory: upcObj.riskCategory,
                 };
                 receiptBase.receiptDetails.lineItems.push(newItem);
             }
@@ -58,9 +59,9 @@ const ScanWrapper = () => {
             sum += totalCost;
         });
 
-        receiptBase.receiptDetails.subTotal = sum;
+        receiptBase.receiptDetails.subTotal = toDbl(sum);
         receiptBase.receiptDetails.salesTax = toDbl(sum*.0625);
-        receiptBase.receiptDetails.orderTotal = sum + receiptBase.receiptDetails.salesTax;
+        receiptBase.receiptDetails.orderTotal = toDbl(sum + receiptBase.receiptDetails.salesTax);
     };
 
     const history = useHistory();
@@ -116,11 +117,9 @@ const ScanWrapper = () => {
                 {scanning ? <Scanner scannerRef={scannerRef} onDetected={(result) => addLineItem(result?.codeResult?.code)} /> : null}
             </div>
             <div className="col__12-12 col__12-12--xs col__12-12--sm col__12-12--md col__12-12--lg col__12-12--xl">
-                {receiptBase?.receiptDetails?.subTotal > 1 &&
                     <div className="opc-border-bottom-grey" >
-                        <span className="opc-your-order-text">Scanned Cart</span>
+                        <span className="opc-your-order-text">Your Scan & Go Cart</span>
                     </div>
-                }
             </div>
             <div className="col__12-12 col__12-12--xs col__12-12--sm col__12-12--md col__12-12--lg col__12-12--xl opc-lineItems">
                 {receiptBase.receiptDetails.lineItems && receiptBase.receiptDetails.lineItems.map((lineItem) => {
@@ -131,6 +130,11 @@ const ScanWrapper = () => {
                     />);}
 
                 )}
+                {receiptBase?.receiptDetails?.orderTotal < 1 && <div>
+                    Start scanning to add items to your cart.
+                </div>
+
+                }
             </div>
             <div className="col__12-12 col__12-12--xs col__12-12--sm col__12-12--md col__12-12--lg col__12-12--xl">
                 {receiptBase?.receiptDetails?.subTotal > 1 &&
