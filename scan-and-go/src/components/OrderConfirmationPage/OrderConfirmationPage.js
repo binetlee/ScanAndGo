@@ -106,10 +106,22 @@ export function OrderConfirmationPage() {
     // }, []);
     useEffect(()=> {
         // Call backend to register receipt
+        // Sanitize prices before setting in backend
+        if (!metadataState.receiptDetails) {
+            return;
+        }
+        let sanitizedReceiptDetails = metadataState.receiptDetails;
+        sanitizedReceiptDetails.orderTotal = sanitizedReceiptDetails.orderTotal.toFixed(2);
+        sanitizedReceiptDetails.lineItems.map((lineItem) => {
+            lineItem.itemCost = lineItem.itemCost.toFixed(2);
+            lineItem.totalCost = lineItem.totalCost.toFixed(2);
+            return lineItem;
+        });
+
         fetch('https://scan-and-go-backend.herokuapp.com/setReceipt', {
             method: 'POST',
             mode: 'cors',
-            body: JSON.stringify(metadataState.receiptDetails)
+            body: JSON.stringify(sanitizedReceiptDetails)
         })
         .then(response => response.json())
         .then(data => console.log(data))
