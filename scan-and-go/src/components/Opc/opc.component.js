@@ -4,6 +4,7 @@ import {MetadataContext} from "../../context";
 import PriceFormatter from "./PriceFormatter";
 import LineItem from "../LineItem";
 import hd_credit_card from "./img/HD_Credit_Card.png";
+import cashback_icon from "./img/cashback_icon.svg";
 
 export function Opc({}) {
 
@@ -19,6 +20,14 @@ export function Opc({}) {
         } else {
             return (total+"").split(".")[1];
         }
+    }
+
+    function paymentTypeSelect(e) {
+        console.log(e.target.value);
+    }
+
+    function cashbackSelect(e) {
+        console.log(e.target.value);
     }
 
     useEffect(()=> {
@@ -111,23 +120,34 @@ export function Opc({}) {
                     <span className="opc-your-order-text">Payment</span>
                 </div>
             </div>
-            <div className="col__12-12 col__12-12--xs col__12-12--sm col__12-12--md col__12-12--lg col__12-12--xl">
-                    <div className="col__12-12 radio-btn">
-                        <input className="radio-btn__input" type="radio" name="payPal" readOnly value="payPal" />
-                        <label className="radio-btn__label" htmlFor="payPal">
-                            <span className="radio-btn"/>
-                            <div className="">
-                               <img src="https://www.homedepot.com/mycheckout/assets/react/images/layout/paypal-logo.png" className="opc-paypal-logo"/>
-                            </div>
-                        </label>
-                    </div>
-                    <div className="col__12-12 radio-btn">
-                        <input className="radio-btn__input" type="radio" name="creditCard" readOnly value="creditCard" />
-                        <label className="radio-btn__label" htmlFor="creditCard">
-                            <span className="radio-btn"/>
-                                <div> <img src={hd_credit_card} className="opc-credit-image"  alt="Credit Card Logo"/>****5555 05/25</div>
-                        </label>
-                    </div>
+            <div className="col__12-12 col__12-12--xs col__12-12--sm col__12-12--md col__12-12--lg col__12-12--xl" onChange={paymentTypeSelect}>
+                <div >
+                    <input className="radio-btn__input" type="radio" name="paymentChoice" readOnly value="payPal" />
+                    <label className="radio-btn__label" htmlFor="payPal">
+                        <span className="radio-btn"/>
+                        <div className="">
+                           <img src="https://www.homedepot.com/mycheckout/assets/react/images/layout/paypal-logo.png" className="opc-paypal-logo"/>
+                        </div>
+                    </label>
+                    <input className="radio-btn__input" type="radio" name="paymentChoice" readOnly value="creditCard" />
+                    <label className="radio-btn__label" htmlFor="creditCard">
+                        <span className="radio-btn"/>
+                            <div> <img src={hd_credit_card} className="opc-credit-image"  alt="Credit Card Logo"/>****5555 05/25</div>
+                    </label>
+                </div>
+            </div>
+            <div className="col__12-12 col__12-12--xs col__12-12--sm col__12-12--md col__12-12--lg col__12-12--xl" onChange={cashbackSelect}>
+                <div className="checkbox-btn">
+                    <input className="checkbox-btn__input" type="checkbox" id="cashback" name="cashback"/>
+                    <label className="checkbox-btn__label" htmlFor="cashback">
+                        <div>
+                            <img src={cashback_icon} className="opc-cashback-icon"/>
+                            <span className="bold">Apply $20.00 cash back </span>
+                            <div>Thanks for paying with your Home Depot credit card</div>
+                        </div>
+
+                    </label>
+                </div>
             </div>
         </div>
         </>
