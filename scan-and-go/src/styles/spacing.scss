@@ -1,3 +1,4 @@
+$space-awkward: 7px;
 
 .u {
   &--margin {
@@ -21,6 +22,28 @@
     }
     &-right {
       margin-right: $space-standard;
+    }
+
+    // AWKWARD - 7px
+    &Awkward-vertical {
+      margin-top: $space-awkward;
+      margin-bottom: 7px;
+    }
+    &Awkward-horizontal {
+      margin-left: $space-awkward;
+      margin-right: $space-awkward;
+    }
+    &Awkward-top {
+      margin-top: $space-awkward;
+    }
+    &Awkward-bottom {
+      margin-bottom: $space-awkward;
+    }
+    &Awkward-left {
+      margin-left: $space-awkward;
+    }
+    &Awkward-right {
+      margin-right: $space-awkward;
     }
 
     // NONE - 0px
