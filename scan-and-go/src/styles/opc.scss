@@ -1,0 +1,145 @@
+.opc-image-align{
+  height: 35.58px;
+  width: 35.77px;
+  left: 10.046875px;
+  top: 20.044921875px;
+  border-radius: 0px;
+}
+
+.opc-scan-go-text {
+  position: absolute;
+  height: 31px;
+  left: 14.93%;
+  right: 39.73%;
+  width: 60%;
+
+  //font-family: Helvetica Neue LT Pro, serif;
+  font-size: 18px;
+  line-height: 31px;
+  /* identical to box height, or 172% */
+
+  color: #333333;
+}
+
+.opc-header{
+  width: 375px;
+  height: 95px;
+  left: 0px;
+  top: 0px;
+}
+
+.opc-edit-cart {
+  position: absolute;
+  height: 21px;
+  left: 77.6%;
+  right: 2.67%;
+  top: calc(50% - 21px/2 - 7px);
+
+  //font-family: Helvetica Neue LT Pro, serif;
+  font-size: 14px;
+  line-height: 31px;
+  /* identical to box height, or 150% */
+
+  text-align: right;
+
+  color: #3E7697;
+
+}
+
+.opc-border-bottom-grey {
+  border-bottom: 1px solid #999;
+}
+
+.opc-your-order {
+  width: 354px;
+  height: 36px;
+  left: 10px;
+  top: 95px;
+}
+
+.opc-your-order-text {
+  width: 354px;
+  height: 36px;
+  left: 10px;
+  top: 95px;
+
+  //font-family: Helvetica Neue LT Pro;
+  font-size: 30px;
+  line-height: 35px;
+  /* identical to box height */
+
+  color: #333333;
+  border-bottom: 4px solid #F96302;
+}
+
+.opc-underline-orange {
+  width: 140px;
+  height: 4px;
+  left: 10px;
+  top: 125px;
+
+  background: #F96302;
+}
+
+.opc-price-format {
+    font-size: 1.2rem;
+    vertical-align: 1.2ex;
+    line-height: 1rem;
+    //font-family: Helvetica Neue LT Pro;
+    color: #333333;
+  left: 83%;
+}
+
+.opc-price-format-wrapper {
+  font-size: 2.4rem;
+  left: 83%;
+  position: absolute;
+}
+
+.opc-dollar-sign{
+  height: 14px;
+  left: 82.67%;
+  right: 15.47%;
+  top: calc(50% - 14px/2 - 671px);
+
+  //font-family: Helvetica Neue LT Pro;
+  font-size: 12px;
+  line-height: 14px;
+  /* identical to box height */
+
+  color: #333333;
+
+}
+
+.opc-grey-line {
+  position: absolute;
+  width: 353px;
+  height: 2px;
+  left: 1px;
+  top: 31px;
+
+  border: 1px solid #999999;
+}
+
+.opc-lineItems {
+  //top: 60px;
+}
+
+.opc-lineitem-list{
+  padding: 3px;
+}
+
+.opc-paypal-logo {
+  height: 34px;
+  min-width: 74px;
+  margin: -4px 0 0 -5px;
+  background-size: contain;
+  background: url(https://www.homedepot.com/mycheckout/assets/react/images/layout/paypal-logo.png) no-repeat left top;
+}
+
+.opc-credit-image{
+  width: 34px;
+  height: 23.8px;
+  left: 41px;
+  top: 359px;
+}
