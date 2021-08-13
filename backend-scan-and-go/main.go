@@ -14,11 +14,14 @@ import (
 type ReceiptDetails struct {
 	ReceiptId          string `json:"receiptId"`
 	ReceiptCreatedDate string `json:"receiptCreatedDate"`
+	OrderTotal         string `json:"orderTotal"`
 	LineItems          []struct {
 		UpcCode         string `json:"upcCode"`
 		QuantityOrdered int    `json:"quantityOrdered"`
 		ItemDescription string `json:"itemDescription"`
 		RiskCategory    string `json:"riskCategory"`
+		ItemCost        string `json:"itemCost"`
+		TotalCost       string `json:"totalCost"`
 	} `json:"lineItems"`
 }
 
@@ -58,7 +61,6 @@ func setReceipt(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	responseString := fmt.Sprintf("%+v", re)
-
 	fmt.Fprint(w, responseString)
 	userPersistedReceipts[re.ReceiptId] = re
 	fmt.Printf("Successfully set receipt userId: %v\n", re.ReceiptId)

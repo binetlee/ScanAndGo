@@ -36,7 +36,6 @@ const OrderConfirmationInfo = ({receiptDetails}) => {
     
     const formattedItems = formatItems(lineItems);
     const userEmail = billingAddress.emailId;
-    
     // Container
     return (
         <div class='order-conf-info-container'>
