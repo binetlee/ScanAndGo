@@ -5,6 +5,7 @@ import PriceFormatter from "./PriceFormatter";
 import LineItem from "../LineItem";
 import hd_credit_card from "./img/HD_Credit_Card.png";
 import cashback_icon from "./img/cashback_icon.svg";
+import TotalPrice from "../TotalPrice";
 
 export function Opc({}) {
 
@@ -36,7 +37,7 @@ export function Opc({}) {
             receiptDetails : {
                 receiptId: 'W123452003',
                 receiptCreatedDate: "2020-03-21",
-                subTotal: 48.00,
+                subTotal: 48.12,
                 salesTax : 3.00,
                 orderTotal : 51.01,
                 paymentType: {
@@ -148,6 +149,9 @@ export function Opc({}) {
 
                     </label>
                 </div>
+            </div>
+            <div className="col__12-12 col__12-12--xs col__12-12--sm col__12-12--md col__12-12--lg col__12-12--xl">
+                <TotalPrice subtotal={metadataState?.receiptDetails?.subTotal} cashbackAmount={10.00}/>
             </div>
         </div>
         </>
