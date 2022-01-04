@@ -10,8 +10,8 @@ React.JS front end, navigate to scan-and-go, ```npm install``` and ```npm run st
 
 Key Features:
 
--- Integrated Barcode code scanning for adding items to cart via phone
--- Support for multiple impulse item buys at the checkout page
--- Live receipt production via QR code, for easy QR code 
--- POC to work for both native and browser clients
+1. Integrated Barcode code scanning for adding items to cart via phone
+2. Support for multiple impulse item buys at the checkout page
+3. Live receipt production via QR code, for easy QR code 
+4. POC to work for both native and browser clients
 
